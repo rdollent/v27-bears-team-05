@@ -4,13 +4,13 @@ import { Container } from "./elements/components";
 
 function App() {
     return (
-        <Container>
+        <div>
             <Router>
                 <Switch>
                     <Route path="/" exact component={Home} />
                 </Switch>
             </Router>
-        </Container>
+        </div>
     );
 }
 
