@@ -9,11 +9,11 @@ export const Container = styled.div`
     max-width: 85rem;
 
     ${below.s`
-  padding: 0;
-  width: 90%;
+      padding: 0;
+      width: 90%;
   `}
 
     ${below.xs`
-  width: 92.5%;
+      width: 92.5%;
   `}
 `;
