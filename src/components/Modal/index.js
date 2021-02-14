@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useDispatch, useSelector } from 'react'
+import { toggleModalAction} from '../../actions/index.js'
 import './index.css'
+import Modal from '../../elements/components/Modal.js'
 
 const Modal = () => {
+    const dispatch = useDispatch()
+    const state = useSelector((state) => state.modalReducer)
     return (
-        <div>
+        <Modal onClick={() => dispatch(toggleModalAction())}>
             
-        </div>
+        </Modal>
     )
 }
 
