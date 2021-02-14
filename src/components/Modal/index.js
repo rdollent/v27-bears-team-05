@@ -7,8 +7,8 @@ const Modal = () => {
     const dispatch = useDispatch()
     const state = useSelector((state) => state.modalReducer)
     return (
-        <Modal onClick={() => dispatch(toggleModalAction())}>
-            
+        <Modal onClick={() => dispatch(toggleModalAction(state.))}>
+
         </Modal>
     )
 }
