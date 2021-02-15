@@ -4,9 +4,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { exampleReducer } from "./reducers/exampleReducers";
 import { modalReducer } from './reducers/index.js'
 
+import { userReducer } from "./reducers/userReducers";
+import { habitAddReducer } from "./reducers/habitAddReducer";
+
 const reducer = combineReducers({
     exampleReducer,
-    modalReducer
+    modalReducer,
+    userReducer,
+    habitAddReducer
 });
 
 const initialState = {
