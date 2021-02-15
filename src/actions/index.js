@@ -1,4 +1,4 @@
-import {TOGGLE_MODAl} from '../constants/index.js'
+import {TOGGLE_MODAL} from '../constants/index.js'
 
 
 export const toggleModalAction = () => {

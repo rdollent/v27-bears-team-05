@@ -5,7 +5,7 @@ export const modalReducer = (state = { toggleModal: false }, action) => {
         case TOGGLE_MODAL:
             return {
                 ...state, 
-                toggleModal: !payload
+                toggleModal: !state.toggleModal
             }
         default: 
             return state
