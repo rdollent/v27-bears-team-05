@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import Button from "./../Button.js";
 import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
+import { userLogin } from "./../../actions/userActions.js";
 
 const LoggedOutContainer = styled.div`
     height: 100vh;
@@ -67,7 +68,7 @@ const LoggedOutView = () => {
                 <p>An easy way to make better choices automatic</p>
                 <Buttons>
                     <Button content='Register' color='#355070' fontWeight="bold" width="130px" />
-                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" />
+                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => dispatch(userLogin()) } />
                 </Buttons>
                 <Button content="open modal" handleClick={ () => openHabitTest()  } />
             </LoggedOutContent>

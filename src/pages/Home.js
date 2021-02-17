@@ -2,7 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { exampleAction } from "../actions/exampleActions";
 import LoggedOutView from './../components/LoggedOut/LoggedOutView.js';
-
+import LoggedInView from './../components/LoggedIn/LoggedInView.js';
+import NavBar from './../components/NavBar.js';
 
 const Home = () => {
    // const exampleState = useSelector((state) => state.exampleReducer);
@@ -10,7 +11,10 @@ const Home = () => {
     return (
         <div>
             { userState.loggedIn ? 
-               <div>Logged In</div>
+            <>
+                <NavBar />
+                <LoggedInView />
+            </>
             :
                 <LoggedOutView />
             }
