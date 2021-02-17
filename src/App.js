@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import { Container } from "./elements/components";
 import HabitAdd from "./pages/HabitAdd";
+import Modal from './components/Modal.js';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                     <Route path="/add-habit" exact component={HabitAdd} />
                 </Switch>
             </Router>
+            <Modal />
         </div>
     );
 }

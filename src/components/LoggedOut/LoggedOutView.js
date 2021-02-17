@@ -1,6 +1,8 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import Button from "./../Button.js";
+import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
 
 const LoggedOutContainer = styled.div`
     height: 100vh;
@@ -50,6 +52,12 @@ const Buttons = styled.div`
 `;
 
 const LoggedOutView = () => {
+    const dispatch = useDispatch()
+
+    const openHabitTest = ()  => {
+        dispatch(toggleModalAction());
+        dispatch(whichModalAction('habitAdd'));
+    }
     return (
         <LoggedOutContainer>
             <LoggedOutContent>
@@ -61,6 +69,7 @@ const LoggedOutView = () => {
                     <Button content='Register' color='#355070' fontWeight="bold" width="130px" />
                     <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" />
                 </Buttons>
+                <Button content="open modal" handleClick={ () => openHabitTest()  } />
             </LoggedOutContent>
         </LoggedOutContainer>
     )

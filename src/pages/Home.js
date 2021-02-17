@@ -14,14 +14,6 @@ const Home = () => {
             :
                 <LoggedOutView />
             }
-            {/* <p>Welcome to the home page!</p>
->>>>>>> 05a8deb6467a087e7f397ad00e4394d580ceca53
-            <br />
-            <p>Click the button to toggle the Redux state.</p>
-            <br />
-            <p>Example State: {exampleState.toggle ? "On" : "Off"}</p>
-            <br />
-            <button onClick={() => dispatch(exampleAction())}>Click Me!</button> */}
         </div>
     );
 };

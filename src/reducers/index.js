@@ -1,11 +1,16 @@
-import { TOGGLE_MODAL } from '../constants/index.js'
+import { TOGGLE_MODAL, WHICH_MODAL } from '../constants/index.js'
 
-export const modalReducer = (state = { toggleModal: false }, action) => {
+export const modalReducer = (state = { opened: false, which: 'habitAdd' }, action) => {
     switch(action.type) {
         case TOGGLE_MODAL:
             return {
                 ...state, 
-                toggleModal: !state.toggleModal
+                opened: !state.opened
+            }
+        case WHICH_MODAL:
+            return {
+                ...state,
+                which: action.data
             }
         default: 
             return state

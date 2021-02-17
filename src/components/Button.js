@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const Button = styled.button`
+const ButtonContainer = styled.button`
     background: ${ props => props.color };
     color: ${ props => props.font };
     outline: none;
@@ -15,12 +15,12 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const Modal = ({ color="black", font="white", handleClick, content, fontWeight='normal', width="50px" }) => {
+const Button = ({ color="black", font="white", handleClick, content, fontWeight='normal', width="50px" }) => {
     return (
-        <Button type="button" color={color} font={font} onClick={handleClick} fontWeight={fontWeight} width={width}>
+        <ButtonContainer type="button" color={color} font={font} onClick={handleClick} fontWeight={fontWeight} width={width}>
             {content}
-        </Button>
+        </ButtonContainer>
     )
 }
 
-export default Modal
+export default Button
