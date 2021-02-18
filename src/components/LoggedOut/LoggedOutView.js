@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from "./../Button.js";
+import Login from './../Login.js';
+import Register from './../Register.js';
 
 const LoggedOutContainer = styled.div`
     height: 100vh;
@@ -10,6 +12,7 @@ const LoggedOutContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
@@ -50,6 +53,8 @@ const Buttons = styled.div`
 `;
 
 const LoggedOutView = () => {
+    const [ showForm, setShowForm ] = useState( false );
+    const [ whichForm, setWhichForm ] = useState( 'login' );
     return (
         <LoggedOutContainer>
             <LoggedOutContent>
@@ -58,10 +63,21 @@ const LoggedOutView = () => {
                 </Title>
                 <p>An easy way to make better choices automatic</p>
                 <Buttons>
-                    <Button content='Register' color='#355070' fontWeight="bold" width="130px" />
-                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" />
+                    <Button content='Register' color='#355070' fontWeight="bold" width="130px" handleClick={ () => {
+                        setShowForm( true );
+                        setWhichForm( 'register' ) } } />
+                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => {
+                        setShowForm( true );
+                        setWhichForm( 'login' ) } }/>
                 </Buttons>
             </LoggedOutContent>
+            { showForm &&
+                ( whichForm === 'login' ?
+                    <Login close={ () => setShowForm( false ) } />
+                    :
+                    <Register close={ () => setShowForm( false ) } />
+                )
+            }
         </LoggedOutContainer>
     )
 }
