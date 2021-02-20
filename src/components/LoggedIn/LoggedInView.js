@@ -3,12 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import Button from "./../Button.js";
 import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
+import { below } from "./../../elements/utilities";
+import HabitsList from './HabitsList.js';
+import FooterButtons from './FooterButtons.js';
 
 const LoggedInContainer = styled.div`
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 `;
 
 const LoggedInContent = styled.div`
@@ -16,6 +20,7 @@ const LoggedInContent = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 15px;
+    width: 100%;
 
     p {
         font-size: 1.5em;
@@ -24,26 +29,38 @@ const LoggedInContent = styled.div`
     }
 `;
 
-const Title = styled.div`
+const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    ${below.xs`
+      flex-direction: column;
+    `}
+`;
+const HeaderLeft = styled.div`
     display: flex;
 
-    h1 {
-        font-size: 3em;
-    }
+    > ul {
+        display: flex;
+        list-style: none;
+        padding-left: 15px;
+        align-items: center;
+        align-self: flex-end;
+        padding-bottom: 5px;
 
-    .orange {
-        color: #e56b6f;
+        li {
+            padding: 0 8px;
+            color: #8f8d8d;
+            cursor: pointer;
+        }
     }
 `;
-
-const Buttons = styled.div`
+const HeaderRight = styled.div`
     display: flex;
-    flex-direction: row;
-    padding-top: 30px;
-
-    button {
-        margin: 0 10px;
-    }
+    align-items: center;
+    ${below.xs`
+      padding-top: 15px;
+    `}
 `;
 
 const LoggedInView = () => {
@@ -52,8 +69,22 @@ const LoggedInView = () => {
     return (
         <LoggedInContainer>
             <LoggedInContent>
-                Logged In
+                <Header>
+                    <HeaderLeft className="header-left">
+                        <h1>Habits</h1>
+                        <ul>
+                            <li>All</li>
+                            <li>Completed</li>
+                            <li>Pending</li>
+                        </ul>
+                    </HeaderLeft>
+                    <HeaderRight className="header-right">
+                        Filter
+                    </HeaderRight>
+                </Header>
+                <HabitsList />
             </LoggedInContent>
+            <FooterButtons />
         </LoggedInContainer>
     )
 }
