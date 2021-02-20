@@ -6,16 +6,25 @@ import { toggleModalAction } from './../actions/index.js';
 import Login from './Login.js';
 import Register from './Register.js';
 
+const ModalOuterContainer = styled.div`
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,.55);
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+    display: ${ props => props.open ? 'flex' : 'none' };
+`;
+
 const ModalContainer = styled.div`
     padding: 15px 20px;
     width: ${ props => props.width ? props.width : 'fit-content' };
     height: ${ props => props.height ? props.height : 'fit-content' };
     background: white;
     border-radius: 30px;
-    transition: all 1.5s;
-    position: absolute;
-    top: 20%;
-    transform: translateY(50%);
+    // transition: all 1.5s;
     box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.5);
     -webkit-box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.5);
     -moz-box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.5);
@@ -67,13 +76,15 @@ const Modal = (props) => {
     }
 
     return (
-        <ModalContainer className={`${state.opened ? 'slide-in' : 'slide-out'}`} width={ dims.width } height={ dims.height }>
-            <ModalContent>
-                <span style={ { cursor: 'pointer' } } onClick={ () => dispatch(toggleModalAction())}>x</span>
-                <br />
-                {body}
-            </ModalContent>
-        </ModalContainer>
+        <ModalOuterContainer className="modal-outer" open={ state.opened }>
+            <ModalContainer className={`${state.opened ? 'slide-in' : 'slide-out'}`} width={ dims.width } height={ dims.height }>
+                <ModalContent>
+                    <span style={ { cursor: 'pointer' } } onClick={ () => dispatch(toggleModalAction())}>x</span>
+                    <br />
+                    {body}
+                </ModalContent>
+            </ModalContainer>
+        </ModalOuterContainer>  
     )
 }
 

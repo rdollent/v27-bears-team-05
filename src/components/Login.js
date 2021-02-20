@@ -2,6 +2,8 @@ import React from "react";
 import Button from "./Button.js";
 import Input from  './Input.js';
 import styled from 'styled-components';
+import { whichModalAction } from "./../actions/index.js";
+import { useDispatch } from "react-redux";
 
 const LoginContainer = styled.div`
     display: flex;
@@ -33,6 +35,7 @@ const LoginForm = styled.form`
 `;
 
 const Login = () => {
+    const dispatch = useDispatch()
     return (
         <LoginContainer>
             <h2>Login</h2>
@@ -41,7 +44,7 @@ const Login = () => {
                 <Input label="Password" type="password" />
                 <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" />
             </LoginForm>
-            <p>Don't have an account? <span>Register here.</span></p>
+            <p>Don't have an account? <span onClick={ () => dispatch(whichModalAction('register') ) }>Register here.</span></p>
         </LoginContainer>
     );
 };
