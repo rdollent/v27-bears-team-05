@@ -3,13 +3,14 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import HabitAdd from './../pages/HabitAdd.js';
 import { toggleModalAction } from './../actions/index.js';
+import Login from './Login.js';
+import Register from './Register.js';
 
 const ModalContainer = styled.div`
-    padding: 20px;
-    width: 600px;
-    height: 500px;
+    padding: 15px 20px;
+    width: ${ props => props.width ? props.width : 'fit-content' };
+    height: ${ props => props.height ? props.height : 'fit-content' };
     background: white;
-    border: 5px solid #E56B6F;
     border-radius: 30px;
     transition: all 1.5s;
     position: absolute;
@@ -26,30 +27,52 @@ const ModalContainer = styled.div`
     &.slide-out {
         transform: translateX(-9999px);
     }
-`
+`;
+
+const ModalContent =  styled.div`
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+
+    > span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-weight: bold;
+        font-size: 22px;
+
+    }
+`;
 
 const Modal = (props) => {
     const dispatch = useDispatch()
     const state = useSelector((state) => state.modalReducer);
 
     let body;
+    let dims = {};
 
-    // if ( state.which === 'login' ) {
-    //     body = <Login />
-    // } else if ( state.which === 'register' ) {
-    //     body = <Register />
-    // } else if ( state.which  === 'habitAdd' ) {
-    //     body = <HabitAdd />
-    // }
-
-    if ( state.which === 'habitAdd' ) {
+    if ( state.which === 'login' ) {
+        body = <Login />;
+        dims = { height: '400px', width: '300px' };
+    } else if ( state.which === 'register' ) {
+        body = <Register />
+        dims = { height: '500px', width: '300px' };
+    } else if ( state.which  === 'habitAdd' ) {
         body = <HabitAdd />
+        dims = { height: '500px', width: '600px' };
     }
+
     return (
-        <ModalContainer className={`${state.opened ? 'slide-in' : 'slide-out'}`}>
-            <span style={ { cursor: 'pointer' } } onClick={ () => dispatch(toggleModalAction())}>X</span>
-            <br />
-            {body}
+        <ModalContainer className={`${state.opened ? 'slide-in' : 'slide-out'}`} width={ dims.width } height={ dims.height }>
+            <ModalContent>
+                <span style={ { cursor: 'pointer' } } onClick={ () => dispatch(toggleModalAction())}>x</span>
+                <br />
+                {body}
+            </ModalContent>
         </ModalContainer>
     )
 }

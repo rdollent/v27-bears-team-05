@@ -13,6 +13,9 @@ const ButtonContainer = styled.button`
     font-weight: ${ props => props.fontWeight };
     min-width: ${ props => props.width };
     cursor: pointer;
+    box-shadow: 3px 3px 11px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 11px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 11px -4px rgba(0,0,0,0.75);
 `;
 
 const Button = ({ color="black", font="white", handleClick, content, fontWeight='normal', width="50px", padding="12px 30px" }) => {

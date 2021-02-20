@@ -1,6 +1,6 @@
 import { TOGGLE_MODAL, WHICH_MODAL } from '../constants/index.js'
 
-export const modalReducer = (state = { opened: false, which: 'habitAdd' }, action) => {
+export const modalReducer = (state = { opened: false, which: '' }, action) => {
     switch(action.type) {
         case TOGGLE_MODAL:
             return {

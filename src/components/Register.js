@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button.js";
+import Input from './Input'
 import styled from 'styled-components';
 
 const RegisterContainer = styled.div`
@@ -8,8 +9,19 @@ const RegisterContainer = styled.div`
     align-items: center;
     justify-content: center;
 
+    h2 {
+        padding-bottom: 25px;
+    }
+
     p {
-        cursor: pointer;
+        font-size: .8rem;
+        padding-top: 25px;
+
+        span {
+            font-weight: bold;
+            cursor: pointer;
+            font-color: #355070;
+        }
     }
 `;
 
@@ -20,19 +32,17 @@ const RegisterForm = styled.form`
 
 `;
 
-const Register = ( { close } ) => {
+const Register = () => {
     return (
         <RegisterContainer>
+            <h2>Register</h2>
             <RegisterForm id="habit-add">
-                <label htmlFor="username">Username</label>
-                <input className="mb-1" id="username" placeholder="Username" type="text" />
-                <label htmlFor="email">Email</label>
-                <input className="mb-1" id="email" placeholder="Email" type="text" />
-                <label htmlFor="password">Password</label>
-                <input className="mb-1" id="password" placeholder="Password" type="password" />
-                <Button type="submit" content="Register" handleClick={ () => console.log( 'register' ) } />
+                <Input label="Username" type="text" />
+                <Input label="Email" type="text" />
+                <Input label="Password" type="password" />
+                <Button content='Register' color='#355070' fontWeight="bold" width="130px" />
             </RegisterForm>
-            <p onClick={ close  }>Close</p>
+            <p>Already have an account? <span>Login here.</span></p>
         </RegisterContainer>
     );
 };

@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import Button from "./../Button.js";
 import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
-import { userLogin } from "./../../actions/userActions.js";
-import Login from './../Login.js';
-import Register from './../Register.js';
 
 const LoggedOutContainer = styled.div`
     height: 100vh;
@@ -58,12 +55,10 @@ const Buttons = styled.div`
 const LoggedOutView = () => {
     const dispatch = useDispatch()
 
-    const openHabitTest = ()  => {
+    const openModal = (modal)  => {
         dispatch(toggleModalAction());
-        dispatch(whichModalAction('habitAdd'));
+        dispatch(whichModalAction(modal));
     }
-    const [ showForm, setShowForm ] = useState( false );
-    const [ whichForm, setWhichForm ] = useState( 'login' );
     return (
         <LoggedOutContainer>
             <LoggedOutContent>
@@ -72,22 +67,10 @@ const LoggedOutView = () => {
                 </Title>
                 <p>An easy way to make better choices automatic</p>
                 <Buttons>
-                    <Button content='Register' color='#355070' fontWeight="bold" width="130px" handleClick={ () => {
-                        setShowForm( true );
-                        setWhichForm( 'register' ) } } />
-                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => {
-                        setShowForm( true );
-                        setWhichForm( 'login' ) } }/>
+                    <Button content='Register' color='#355070' fontWeight="bold" width="130px" handleClick={ () => openModal('register') } />
+                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => openModal('login') }/>
                 </Buttons>
-                <Button content="open modal" handleClick={ () => openHabitTest()  } />
             </LoggedOutContent>
-            { showForm &&
-                ( whichForm === 'login' ?
-                    <Login close={ () => setShowForm( false ) } />
-                    :
-                    <Register close={ () => setShowForm( false ) } />
-                )
-            }
         </LoggedOutContainer>
     )
 }

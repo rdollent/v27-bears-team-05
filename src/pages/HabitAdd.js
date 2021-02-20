@@ -43,9 +43,9 @@ const HabitAdd = () => {
     return (
         <div>
             <form id="habit-add">
-                <label for="habit-name">Name</label>
+                <label htmlFor="habit-name">Name</label>
                 <input id="habit-name" placeholder="Do some situps" onChange={inputName}></input>
-                <label for="habit-type">Type</label>
+                <label htmlFor="habit-type">Type</label>
                 <select id="habit-type" onChange={inputType}>
                     <option selected disabled hidden value="">Select type</option>
                     <option value="health">Health</option>
@@ -54,7 +54,7 @@ const HabitAdd = () => {
                     <option value="learn">Learn</option>
                     <option value="productivity">Productivity</option>
                 </select>
-                <label for="habit-freq">Frequency</label>
+                <label htmlFor="habit-freq">Frequency</label>
                 <select id="habit-freq" onChange={inputFreq}>
                     <option selected disabled hidden value="">Select frequency</option>
                     <option value="daily">Daily</option>
@@ -62,9 +62,9 @@ const HabitAdd = () => {
                     <option value="bi-weekly">Bi-Weekly</option>
                     <option value="monthly">Monthly</option>
                 </select>
-                <label for="habit-goal">Goal</label>
+                <label htmlFor="habit-goal">Goal</label>
                 <input id="habit-goal" placeholder="100 situps" onChange={inputGoal}></input>
-                <label for="habit-duration">Duration</label>
+                <label htmlFor="habit-duration">Duration</label>
                 <select id="habit-duration" onChange={inputDuration}>
                     <option selected disabled hidden value="">Select duration</option>
                     <option value="month-one">1 Month</option>
