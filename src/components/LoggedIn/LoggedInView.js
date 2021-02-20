@@ -37,8 +37,13 @@ const Header = styled.div`
       flex-direction: column;
     `}
 `;
+
 const HeaderLeft = styled.div`
     display: flex;
+
+    h1 {
+        align-self: flex-end;
+    }
 
     > ul {
         display: flex;
@@ -55,9 +60,22 @@ const HeaderLeft = styled.div`
         }
     }
 `;
+
 const HeaderRight = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+
+    label {
+        font-size: .9em;
+    }
+    select {
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-top:  5px;
+        border: 1px solid #8f8d8d;
+        outline: none;
+    }
+
     ${below.xs`
       padding-top: 15px;
     `}
@@ -79,7 +97,12 @@ const LoggedInView = () => {
                         </ul>
                     </HeaderLeft>
                     <HeaderRight className="header-right">
-                        Filter
+                        <label>Filter:</label>
+                        <select>
+                            <option>All</option>
+                            <option>Exercise</option>
+                            <option>Productivity</option>
+                        </select>
                     </HeaderRight>
                 </Header>
                 <HabitsList />

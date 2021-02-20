@@ -12,7 +12,6 @@ const ModalOuterContainer = styled.div`
     height: 100vh;
     width: 100vw;
     background: rgba(0,0,0,.55);
-    // display: flex;
     justify-content: center;
     align-items: center;
     display: ${ props => props.open ? 'flex' : 'none' };
@@ -28,6 +27,7 @@ const ModalContainer = styled.div`
     box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.5);
     -webkit-box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.5);
     -moz-box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.5);
+    max-width: 85%;
 
     &.slide-in {
         transform: translateX(0);
