@@ -1,6 +1,10 @@
 import React from "react";
 import Button from "./Button.js";
+import Input from  './Input.js';
 import styled from 'styled-components';
+import { whichModalAction, toggleModalAction } from "./../actions/index.js";
+import { useDispatch } from "react-redux";
+import { userLogin } from './../actions/userActions.js';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -8,8 +12,19 @@ const LoginContainer = styled.div`
     align-items: center;
     justify-content: center;
 
+    h2 {
+        padding-bottom: 25px;
+    }
+
     p {
-        cursor: pointer;
+        font-size: .8rem;
+        padding-top: 25px;
+
+        span {
+            font-weight: bold;
+            cursor: pointer;
+            font-color: #355070;
+        }
     }
 `;
 
@@ -20,17 +35,22 @@ const LoginForm = styled.form`
 
 `;
 
-const Login = ( { close } ) => {
+const Login = () => {
+    const dispatch = useDispatch()
+
+    const handleLogin = () => {
+        dispatch(userLogin());
+        dispatch(toggleModalAction());
+    }
     return (
         <LoginContainer>
+            <h2>Login</h2>
             <LoginForm id="habit-add">
-                <label htmlFor="username">Username</label>
-                <input className="mb-1" id="username" placeholder="Username" type="text" />
-                <label htmlFor="password">Password</label>
-                <input className="mb-1" id="password" placeholder="Password" type="password" />
-                <Button type="submit" content="Login" handleClick={ () => console.log( 'login' ) }/>
+                <Input label="Username" type="text" />
+                <Input label="Password" type="password" />
+                <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => handleLogin() } />
             </LoginForm>
-            <p onClick={ close }>Close</p>
+            <p>Don't have an account? <span onClick={ () => dispatch(whichModalAction('register') ) }>Register here.</span></p>
         </LoginContainer>
     );
 };
