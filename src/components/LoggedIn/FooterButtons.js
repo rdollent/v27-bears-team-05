@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
+import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
 import { useDispatch } from "react-redux";
 
 const ButtonsContainer = styled.div`
@@ -25,7 +25,7 @@ const FooterButtons = () => {
     return (
         <ButtonsContainer>
             <img src="./images/addCheck.png" />
-            <img src="./images/addHabit.png" onClick={() => openModal('habitAdd') } />
+            <img src="./images/addHabit.png" onClick={() => openModal('preset') } />
         </ButtonsContainer>
     )
 }

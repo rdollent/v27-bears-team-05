@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { 
     changeHabitName, 
@@ -6,11 +6,17 @@ import {
     changeHabitFreq,
     changeHabitGoal,
     changeHabitDuration
-} from "../actions/habitAddActions";
+} from "../../actions/habitAddActions";
+
+import { whichModalAction } from "./../../actions/modalActions.js";
 
 const HabitAdd = () => {
     const dispatch = useDispatch();
     const habitState = useSelector((state) => state.habitAddReducer);
+    const currentHabit = useSelector((state) => state.habitLoadReducer);
+    const openModal = (modal)  => {
+        dispatch(whichModalAction(modal));
+    }
 
     const inputName = (e) => dispatch(changeHabitName(e.target.value));
     const inputType = (e) => dispatch(changeHabitType(e.target.value));
@@ -19,6 +25,15 @@ const HabitAdd = () => {
     const inputDuration = (e) => dispatch(changeHabitDuration(e.target.value));
 
     let url = '';
+
+    useEffect(() => {
+        if('name' in currentHabit) {
+            document.getElementById('habit-name').value = currentHabit.name;
+        }
+        if('type' in currentHabit) {
+            document.getElementById('habit-type').value = currentHabit.type;
+        }
+    }, [currentHabit]);
 
 
     const submitHabit = (e) => {
@@ -42,6 +57,7 @@ const HabitAdd = () => {
 
     return (
         <div>
+            <button onClick={ () => openModal('preset')}>Back</button>
             <form id="habit-add">
                 <label htmlFor="habit-name">Name</label>
                 <input id="habit-name" placeholder="Do some situps" onChange={inputName}></input>
@@ -63,7 +79,7 @@ const HabitAdd = () => {
                     <option value="monthly">Monthly</option>
                 </select>
                 <label htmlFor="habit-goal">Goal</label>
-                <input id="habit-goal" placeholder="100 situps" onChange={inputGoal}></input>
+                <input id="habit-goal" placeholder="Type goal here" onChange={inputGoal}></input>
                 <label htmlFor="habit-duration">Duration</label>
                 <select id="habit-duration" onChange={inputDuration}>
                     <option selected disabled hidden value="">Select duration</option>

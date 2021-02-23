@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button.js";
 import Input from './Input'
 import styled from 'styled-components';
-import { whichModalAction } from "./../actions/index.js";
+import { whichModalAction } from "./../actions/modalActions.js";
 import { useDispatch } from "react-redux";
 
 const RegisterContainer = styled.div`

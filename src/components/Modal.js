@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import HabitAdd from './../pages/HabitAdd.js';
-import { toggleModalAction } from './../actions/index.js';
+import HabitAdd from './HabitAdd/HabitAdd.js';
+import { toggleModalAction } from './../actions/modalActions.js';
 import Login from './Login.js';
 import Register from './Register.js';
+import Preset from './HabitAdd/Preset.js';
 
 const ModalOuterContainer = styled.div`
     position: absolute;
@@ -64,15 +65,26 @@ const Modal = (props) => {
     let body;
     let dims = {};
 
-    if ( state.which === 'login' ) {
-        body = <Login />;
-        dims = { height: '400px', width: '300px' };
-    } else if ( state.which === 'register' ) {
-        body = <Register />
-        dims = { height: '500px', width: '300px' };
-    } else if ( state.which  === 'habitAdd' ) {
-        body = <HabitAdd />
-        dims = { height: '500px', width: '600px' };
+    switch ( state.which ) {
+        case 'login': 
+            body = <Login />;
+            dims = { height: '400px', width: '300px' };
+            break;
+        case 'register':
+            body = <Register />
+            dims = { height: '500px', width: '300px' };
+            break;
+        case 'habitAdd':
+            body = <HabitAdd />
+            dims = { height: '500px', width: '600px' };
+            break;
+        case 'preset':
+            body = <Preset/>
+            dims = { height: '500px', width: '600px' };
+            break;
+        default:
+            body = <div></div>;
+            dims = {};
     }
 
     return (

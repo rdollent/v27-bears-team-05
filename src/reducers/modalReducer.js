@@ -1,4 +1,4 @@
-import { TOGGLE_MODAL, WHICH_MODAL } from '../constants/index.js'
+import { TOGGLE_MODAL, WHICH_MODAL } from '../constants/modalConstants.js'
 
 export const modalReducer = (state = { opened: false, which: '' }, action) => {
     switch(action.type) {

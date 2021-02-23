@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button.js";
 import Input from  './Input.js';
 import styled from 'styled-components';
-import { whichModalAction, toggleModalAction } from "./../actions/index.js";
+import { whichModalAction, toggleModalAction } from "./../actions/modalActions.js";
 import { useDispatch } from "react-redux";
 import { userLogin } from './../actions/userActions.js';
 

@@ -1,4 +1,4 @@
-import {TOGGLE_MODAL, WHICH_MODAL} from '../constants/index.js'
+import {TOGGLE_MODAL, WHICH_MODAL} from '../constants/modalConstants.js'
 
 
 export const toggleModalAction = () => {

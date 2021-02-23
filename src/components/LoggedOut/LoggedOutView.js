@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import Button from "./../Button.js";
-import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
+import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
 
 const LoggedOutContainer = styled.div`
     height: 100vh;
