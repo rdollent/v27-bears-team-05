@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import Button from "./../Button.js";
+import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
 
 const LoggedOutContainer = styled.div`
     height: 100vh;
@@ -10,6 +12,7 @@ const LoggedOutContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
@@ -50,6 +53,12 @@ const Buttons = styled.div`
 `;
 
 const LoggedOutView = () => {
+    const dispatch = useDispatch()
+
+    const openModal = (modal)  => {
+        dispatch(toggleModalAction());
+        dispatch(whichModalAction(modal));
+    }
     return (
         <LoggedOutContainer>
             <LoggedOutContent>
@@ -58,8 +67,8 @@ const LoggedOutView = () => {
                 </Title>
                 <p>An easy way to make better choices automatic</p>
                 <Buttons>
-                    <Button content='Register' color='#355070' fontWeight="bold" width="130px" />
-                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" />
+                    <Button content='Register' color='#355070' fontWeight="bold" width="130px" handleClick={ () => openModal('register') } />
+                    <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => openModal('login') }/>
                 </Buttons>
             </LoggedOutContent>
         </LoggedOutContainer>
