@@ -21,11 +21,11 @@ const InputField = styled.input`
     border-radius: 8px;
 `;
 
-const Input = ( { handleChange, label, type } ) => {
+const Input = ( { handleChange, label, type, name, value } ) => {
     return (
         <InputContainer>
             <Label htmlFor={ label }>{label }</Label>
-            <InputField className="mb-1" id={ label } placeholder={ label } type={ type } />
+            <InputField className="mb-1" id={ label } value={value} placeholder={ label } type={ type } name={name} onChange={e => handleChange(e)} />
         </InputContainer>
     )
 }

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components';
 import Button from "./Button.js";
+import { logout } from '../actions/userActions'
 
 const NavContainer = styled.div`
     width: 100vw;
@@ -25,6 +27,12 @@ const Icon = styled.div`
 `;
 
 const NavBar = () => {
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch(logout());
+
+    }
     return (
         <NavContainer>
             <Icon>
