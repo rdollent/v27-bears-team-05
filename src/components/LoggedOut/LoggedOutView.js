@@ -59,6 +59,7 @@ const LoggedOutView = () => {
         dispatch(toggleModalAction());
         dispatch(whichModalAction(modal));
     }
+    
     return (
         <LoggedOutContainer>
             <LoggedOutContent>

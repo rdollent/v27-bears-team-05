@@ -52,7 +52,7 @@ const Login = () => {
         dispatch(toggleModalAction());
         setFormData({username: '', password: ''})
     }
-    
+
     return (
         <LoginContainer>
             <h2>Login</h2>

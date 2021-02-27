@@ -20,7 +20,7 @@ export const userReducer = (state = { loggedIn: false, isAuthenticated: false, u
             return {
                 ...state,
                 ...payload,
-                loggedIn: !state.loggedIn,
+                loggedIn: true,
                 isAuthenticated: true,
             }
         case LOGIN_FAIL:
@@ -32,14 +32,15 @@ export const userReducer = (state = { loggedIn: false, isAuthenticated: false, u
         case USER_LOADED:
             return {
                 ...state,
-                loggedIn: !state.loggedIn,
+                loggedIn: true,
                 isAuthenticated: true,
                 user: payload._id
             }
         case LOGOUT: 
+            localStorage.removeItem('token')
             return {
                 ...state,
-                loggedIn: false,
+                loggedIn: !state.loggedIn,
                 isAuthenticated: false,
                 user: null
             }
