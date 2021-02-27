@@ -112,4 +112,12 @@ const LoggedInView = () => {
     )
 }
 
+LoggedInView.propTypes = {
+    isAuthenticated: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.userReducer.isAuthenticated
+})
+
 export default LoggedInView
