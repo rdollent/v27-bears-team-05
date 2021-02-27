@@ -41,12 +41,55 @@ const HeaderLeft = styled.div`
 
 const ListItem =  styled.li`
     cursor: pointer;
-    padding-right: 15px;
+    padding-right: 25px;
     font-weight: ${ props => props.preset ? 'bold' : 'normal' };
     color: ${ props => props.preset ? 'black' : '#8f8d8d' };
 `;
 
 const HeaderRight = styled.div``;
+
+const CardsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    max-height: 80%;
+`;
+
+const Card = styled.div`
+    height: 100px;
+    width: 165px;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
+    transition: all .2s ease-in-out;
+    background-image: ${ props => props.img && `url("${ props.img }")` }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    &.custom {
+        display: flex;
+        flex-direction: column;
+        background: black;
+        color: white;
+
+        span:first-of-type {
+            text-align: center;
+            padding-top: 10px;
+            font-size: 45px;
+        }
+
+        span:last-of-type {
+            font-weight: bold;
+        }
+    }
+`;
 
 const Preset = () => {
     const [preset, setPreset] = useState('Health');
@@ -62,40 +105,22 @@ const Preset = () => {
 
     const categoriesList = categories.map( item => <ListItem key={item} onClick={(e) => setPreset(e.target.innerText)} preset={preset === item}>{item}</ListItem>);
 
-
-    const showItems = (currentState) => {
-        const health = ['Mediate', 'Take multivitamins', 'De-stress'];
-        const diet = ['Eat brocolli', 'Drink coconut juice', 'Count calories'];
-        const learn = ['Study python', 'Learn how to knit', 'Learn how to draw'];
-        const exercise = ['Do some situps', 'Try yoga poses', 'Run 5k'];
-        const productivity = ['Make your bed', 'Study 8pm everyday', 'Finish work by 1pm'];
-    
-        let body;
-    
-        switch (currentState) {
-            case 'Health': 
-                body = health.map((item) => <div onClick={(e) => openModal('habitAdd', e, 'health')}>{item}</div>);
-                break;
-            case 'Diet':
-                body = diet.map((item) => <div onClick={(e) => openModal('habitAdd', e, 'diet')}>{item}</div>);
-                break;
-            case 'Learn': 
-                body = learn.map((item) => <div onClick={(e) => openModal('habitAdd', e, 'learn')}>{item}</div>);
-                break;
-            case 'Exercise':
-                body = exercise.map((item) => <div onClick={(e) => openModal('habitAdd', e, 'exercise')}>{item}</div>);
-                break;
-            case 'Productivity':
-                body = productivity.map((item) => <div onClick={(e) => openModal('habitAdd', e, 'productivity')}>{item}</div>);
-                break;
-            case 'Custom':
-                body = <div onClick={(e) => openModal('habitAdd', e, 'custom')}>Add Your Own</div>;
-                break;
-            default:
-                return <div></div>
+    const categoryItems = {
+        Health: { 
+            items: ['Mediate', 'Take multivitamins', 'De-stress'] 
+        },
+        Diet: {
+            items: ['Eat brocolli', 'Drink coconut juice', 'Count calories'],
+        },
+        Learn: {
+            items: ['Study python', 'Learn how to knit', 'Learn how to draw']
+        },
+        Exercise: {
+            items: ['Do some situps', 'Try yoga poses', 'Run 5k']
+        },
+        Productivity: {
+            items: ['Make your bed', 'Study 8pm everyday', 'Finish work by 1pm']
         }
-    
-        return body;
     }
     
     return (
@@ -109,7 +134,13 @@ const Preset = () => {
                 </HeaderLeft>
                 <HeaderRight>Filter</HeaderRight>
             </Header>
-            {showItems(preset)}
+            <CardsContainer>
+                { preset === 'Custom' ? 
+                    <Card className="custom" onClick={(e) => openModal('habitAdd', e, 'custom')}><span>+</span><span>Add Your Own</span></Card>
+                    : 
+                    ( categoryItems[ preset ].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )}>{item}</Card>) )
+                }
+            </CardsContainer>
         </AddHabitContainer>
     )
 }
