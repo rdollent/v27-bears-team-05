@@ -92,7 +92,6 @@ const Modal = (props) => {
             <ModalContainer className={`${state.opened ? 'slide-in' : 'slide-out'}`} width={ dims.width } height={ dims.height }>
                 <ModalContent>
                     <span style={ { cursor: 'pointer' } } onClick={ () => dispatch(toggleModalAction())}>x</span>
-                    <br />
                     {body}
                 </ModalContent>
             </ModalContainer>

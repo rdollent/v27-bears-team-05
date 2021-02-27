@@ -5,13 +5,20 @@ import { below } from "./../../elements/utilities";
 import { whichModalAction } from "./../../actions/modalActions.js";
 import { loadHabit } from "./../../actions/habitLoadActions";
 
+const AddHabitContainer = styled.div`
+    height: 90%;
+    width: 90%;
 
-
+    h1 {
+        text-align: center;
+    }
+`;
 
 const Header = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 15px 0;
     ${below.xs`
       flex-direction: column;
     `}
@@ -19,30 +26,27 @@ const Header = styled.div`
 
 const HeaderLeft = styled.div`
     display: flex;
-    h1 {
-        align-self: flex-end;
-    }
+    padding-right: 15px;
 
     > ul {
         display: flex;
+        justify-content: space-between;
         list-style: none;
-        padding-left: 15px;
         align-items: center;
         align-self: flex-end;
         padding-bottom: 5px;
-
-        li {
-            padding: 0 8px;
-            color: #8f8d8d;
-            cursor: pointer;
-        }
+        flex-wrap: wrap;
     }
 `;
 
+const ListItem =  styled.li`
+    cursor: pointer;
+    padding-right: 15px;
+    font-weight: ${ props => props.preset ? 'bold' : 'normal' };
+    color: ${ props => props.preset ? 'black' : '#8f8d8d' };
+`;
 
-
-
-
+const HeaderRight = styled.div``;
 
 const Preset = () => {
     const [preset, setPreset] = useState('Health');
@@ -56,7 +60,7 @@ const Preset = () => {
 
     const categories = ['Health', 'Diet', 'Learn', 'Exercise', 'Productivity', 'Custom'];
 
-    const categoriesList = categories.map( item => <li key={item} onClick={(e) => setPreset(e.target.innerText)}>{item}</li>);
+    const categoriesList = categories.map( item => <ListItem key={item} onClick={(e) => setPreset(e.target.innerText)} preset={preset === item}>{item}</ListItem>);
 
 
     const showItems = (currentState) => {
@@ -95,7 +99,7 @@ const Preset = () => {
     }
     
     return (
-        <div>
+        <AddHabitContainer>
             <h1>Pick a Habit</h1>
             <Header>
                 <HeaderLeft className="header-left">
@@ -103,9 +107,10 @@ const Preset = () => {
                         {categoriesList}
                     </ul>
                 </HeaderLeft>
+                <HeaderRight>Filter</HeaderRight>
             </Header>
             {showItems(preset)}
-        </div>
+        </AddHabitContainer>
     )
 }
 
