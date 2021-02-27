@@ -58,7 +58,7 @@ const CardsContainer = styled.div`
 const Card = styled.div`
     height: 100px;
     width: 165px;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: 10px;
     border-radius: 10px;
     padding: 8px;
@@ -67,10 +67,22 @@ const Card = styled.div`
     -webkit-box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
     transition: all .2s ease-in-out;
-    background-image: ${ props => props.img && `url("${ props.img }")` }
-
+    background-image: linear-gradient(180deg, rgba(231,231,244,0) 32%, rgba(0,0,0,0.4164040616246498) 59%, rgba(0,0,0,0.8897934173669468) 100%), ${ props => props.img ? props.img : '' };;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+  
     &:hover {
         transform: translateY(-5px);
+    }
+
+    .item-text {
+        color: white;
+        font-weight: bold;
+        position: absolute;
+        bottom: 8px;
     }
 
     &.custom {
@@ -138,7 +150,7 @@ const Preset = () => {
                 { preset === 'Custom' ? 
                     <Card className="custom" onClick={(e) => openModal('habitAdd', e, 'custom')}><span>+</span><span>Add Your Own</span></Card>
                     : 
-                    ( categoryItems[ preset ].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )}>{item}</Card>) )
+                    ( categoryItems[ preset ].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )} img={ `url("./categories/${ preset }.jpg")`}><span className="item-text">{item}</span></Card>) )
                 }
             </CardsContainer>
         </AddHabitContainer>
