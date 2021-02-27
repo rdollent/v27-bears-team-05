@@ -31,6 +31,7 @@ export const loadUser = () => async dispatch => {
         }
     } else {
         // dispatch error
+        console.log("token doesn't exist")
     }
 }
 

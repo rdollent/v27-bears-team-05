@@ -32,14 +32,16 @@ export const userReducer = (state = { loggedIn: false, isAuthenticated: false, u
         case USER_LOADED:
             return {
                 ...state,
+                loggedIn: !state.loggedIn,
                 isAuthenticated: true,
-                user: payload.id
+                user: payload._id
             }
         case LOGOUT: 
             return {
                 ...state,
                 loggedIn: false,
                 isAuthenticated: false,
+                user: null
             }
         default:
             return state;

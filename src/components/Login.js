@@ -48,10 +48,11 @@ const Login = () => {
     const { username, password } = formData
 
     const handleLogin = () => {
-        dispatch(login(username, password.trim()));
+        dispatch(login(username.trim(), password.trim()));
         dispatch(toggleModalAction());
         setFormData({username: '', password: ''})
     }
+    
     return (
         <LoginContainer>
             <h2>Login</h2>
