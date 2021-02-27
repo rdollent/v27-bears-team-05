@@ -104,7 +104,7 @@ const Card = styled.div`
 `;
 
 const Preset = () => {
-    const [preset, setPreset] = useState('Health');
+    const [preset, setPreset] = useState('All');
     const dispatch = useDispatch()
     const openModal = (modal, e, type)  => {
         dispatch(whichModalAction(modal));
@@ -113,7 +113,7 @@ const Preset = () => {
         }
     }
 
-    const categories = ['Health', 'Diet', 'Learn', 'Exercise', 'Productivity', 'Custom'];
+    const categories = ['All', 'Health', 'Diet', 'Learn', 'Exercise', 'Productivity', 'Custom'];
 
     const categoriesList = categories.map( item => <ListItem key={item} onClick={(e) => setPreset(e.target.innerText)} preset={preset === item}>{item}</ListItem>);
 
@@ -150,7 +150,12 @@ const Preset = () => {
                 { preset === 'Custom' ? 
                     <Card className="custom" onClick={(e) => openModal('habitAdd', e, 'custom')}><span>+</span><span>Add Your Own</span></Card>
                     : 
-                    ( categoryItems[ preset ].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )} img={ `url("./categories/${ preset }.jpg")`}><span className="item-text">{item}</span></Card>) )
+                    ( preset === 'All' ?
+                        ( Object.keys( categoryItems ).map( category => categoryItems[category].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )} img={ `url("./categories/${ category }.jpg")`}><span className="item-text">{item}</span></Card>) ) )
+                        
+                        :
+                        ( categoryItems[ preset ].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )} img={ `url("./categories/${ preset }.jpg")`}><span className="item-text">{item}</span></Card>) )
+                    )
                 }
             </CardsContainer>
         </AddHabitContainer>
