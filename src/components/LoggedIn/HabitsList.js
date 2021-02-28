@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
+import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
 import { useSelector, useDispatch } from "react-redux";
 
 const HabitsListContainer = styled.div`
