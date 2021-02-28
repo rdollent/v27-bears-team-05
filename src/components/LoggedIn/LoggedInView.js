@@ -1,8 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { Redirect } from 'react-router-dom'
 import styled from 'styled-components';
 import Button from "./../Button.js";
-import { toggleModalAction, whichModalAction } from "./../../actions/index.js";
+import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
 import { below } from "./../../elements/utilities";
 import HabitsList from './HabitsList.js';
 import FooterButtons from './FooterButtons.js';
@@ -83,7 +84,11 @@ const HeaderRight = styled.div`
 
 const LoggedInView = () => {
     const dispatch = useDispatch()
+    const authenticated = useSelector((state) => state.isAuthenticated)
 
+    // if(!authenticated) {
+    //     return <Redirect to="/"/>    }
+    
     return (
         <LoggedInContainer>
             <LoggedInContent>

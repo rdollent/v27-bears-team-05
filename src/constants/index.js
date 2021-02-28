@@ -1,2 +1,0 @@
-export const TOGGLE_MODAL = 'TOGGLE_MODAL'
-export const WHICH_MODAL = 'WHICH_MODAL'

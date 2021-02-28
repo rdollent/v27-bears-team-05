@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components';
 import Button from "./Button.js";
 import { logout } from '../actions/userActions'
+import { Redirect } from 'react-router-dom'
 
 const NavContainer = styled.div`
     width: 100vw;
@@ -29,16 +30,15 @@ const Icon = styled.div`
 const NavBar = () => {
     const dispatch = useDispatch();
 
-    const logout = () => {
+    const logoutUser = () => {
         dispatch(logout());
-
     }
     return (
         <NavContainer>
             <Icon>
                 <h6>habit</h6><h6 className="orange">track</h6>
             </Icon>
-            <Button content='Sign out' color='#355070' width="100px" padding="7px 10px" />
+            <Button content='Sign out' color='#355070' width="100px" padding="7px 10px" handleClick={() => logoutUser()} />
         </NavContainer>
     )
 }
