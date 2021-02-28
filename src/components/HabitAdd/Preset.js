@@ -119,7 +119,7 @@ const Preset = () => {
 
     const categoryItems = {
         Health: { 
-            items: ['Mediate', 'Take multivitamins', 'De-stress'] 
+            items: ['Meditate', 'Take multivitamins', 'De-stress'] 
         },
         Diet: {
             items: ['Eat brocolli', 'Drink coconut juice', 'Count calories'],
@@ -144,7 +144,7 @@ const Preset = () => {
                         {categoriesList}
                     </ul>
                 </HeaderLeft>
-                <HeaderRight>Filter</HeaderRight>
+                {/* <HeaderRight>Filter</HeaderRight> */}
             </Header>
             <CardsContainer>
                 { preset === 'Custom' ? 

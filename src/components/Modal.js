@@ -76,11 +76,11 @@ const Modal = (props) => {
             break;
         case 'habitAdd':
             body = <HabitAdd />
-            dims = { height: '500px', width: '800px' };
+            dims = { height: '525px', width: '675px' };
             break;
         case 'preset':
             body = <Preset/>
-            dims = { height: '500px', width: '800px' };
+            dims = { height: '525px', width: '675px' };
             break;
         default:
             body = <div></div>;

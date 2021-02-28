@@ -21,11 +21,11 @@ const InputField = styled.input`
     border-radius: 8px;
 `;
 
-const Input = ( { handleChange, label, type } ) => {
+const Input = ( { handleChange, id, label, type, placeholder='' } ) => {
     return (
         <InputContainer>
-            <Label htmlFor={ label }>{label }</Label>
-            <InputField className="mb-1" id={ label } placeholder={ label } type={ type } />
+            <Label htmlFor={ id }>{ label }</Label>
+            <InputField className="mb-1" id={ id } placeholder={ placeholder } type={ type } handleChange={ handleChange } />
         </InputContainer>
     )
 }

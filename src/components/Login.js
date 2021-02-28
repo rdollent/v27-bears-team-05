@@ -46,8 +46,8 @@ const Login = () => {
         <LoginContainer>
             <h2>Login</h2>
             <LoginForm id="habit-add">
-                <Input label="Username" type="text" />
-                <Input label="Password" type="password" />
+                <Input label="Username" type="text" id="Username" placeholder="Username" />
+                <Input label="Password" type="password" id="Password" placeholder="Password" />
                 <Button content='Login' color='#6d597a' fontWeight="bold" width="130px" handleClick={ () => handleLogin() } />
             </LoginForm>
             <p>Don't have an account? <span onClick={ () => dispatch(whichModalAction('register') ) }>Register here.</span></p>
