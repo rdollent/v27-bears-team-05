@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { below } from "./../../elements/utilities";
 import { whichModalAction } from "./../../actions/modalActions.js";
-import { loadHabit } from "./../../actions/habitLoadActions";
+import { loadHabit } from "./../../actions/habitAddActions";
 
 const AddHabitContainer = styled.div`
     height: 90%;
@@ -39,11 +39,11 @@ const HeaderLeft = styled.div`
     }
 `;
 
-const ListItem =  styled.li`
+const ListItem = styled.li`
     cursor: pointer;
     padding-right: 25px;
-    font-weight: ${ props => props.preset ? 'bold' : 'normal' };
-    color: ${ props => props.preset ? 'black' : '#8f8d8d' };
+    font-weight: ${(props) => (props.preset ? "bold" : "normal")};
+    color: ${(props) => (props.preset ? "black" : "#8f8d8d")};
 `;
 
 const HeaderRight = styled.div``;
@@ -63,17 +63,23 @@ const Card = styled.div`
     border-radius: 10px;
     padding: 8px;
     cursor: pointer;
-    box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 3px 3px 9px -4px rgba(0,0,0,0.75);
-    transition: all .2s ease-in-out;
-    background-image: linear-gradient(180deg, rgba(231,231,244,0) 32%, rgba(0,0,0,0.4164040616246498) 59%, rgba(0,0,0,0.8897934173669468) 100%), ${ props => props.img ? props.img : '' };;
+    box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.75);
+    transition: all 0.2s ease-in-out;
+    background-image: linear-gradient(
+            180deg,
+            rgba(231, 231, 244, 0) 32%,
+            rgba(0, 0, 0, 0.4164040616246498) 59%,
+            rgba(0, 0, 0, 0.8897934173669468) 100%
+        ),
+        ${(props) => (props.img ? props.img : "")};
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     position: relative;
-  
+
     &:hover {
         transform: translateY(-5px);
     }
@@ -104,62 +110,82 @@ const Card = styled.div`
 `;
 
 const Preset = () => {
-    const [preset, setPreset] = useState('All');
-    const dispatch = useDispatch()
-    const openModal = (modal, e, type)  => {
+    const [preset, setPreset] = useState("All");
+    const dispatch = useDispatch();
+    const openModal = (modal, e, type) => {
         dispatch(whichModalAction(modal));
-        if(type !== 'custom') {
+        if (type !== "custom") {
             dispatch(loadHabit({ name: e.target.innerText, type: type }));
         }
-    }
+    };
 
-    const categories = ['All', 'Health', 'Diet', 'Learn', 'Exercise', 'Productivity', 'Custom'];
+    const categories = ["All", "Health", "Diet", "Learn", "Exercise", "Productivity", "Custom"];
 
-    const categoriesList = categories.map( item => <ListItem key={item} onClick={(e) => setPreset(e.target.innerText)} preset={preset === item}>{item}</ListItem>);
+    const categoriesList = categories.map((item) => (
+        <ListItem key={item} onClick={(e) => setPreset(e.target.innerText)} preset={preset === item}>
+            {item}
+        </ListItem>
+    ));
 
     const categoryItems = {
-        Health: { 
-            items: ['Meditate', 'Take multivitamins', 'De-stress'] 
+        Health: {
+            items: ["Meditate", "Take multivitamins", "De-stress"],
         },
         Diet: {
-            items: ['Eat brocolli', 'Drink coconut juice', 'Count calories'],
+            items: ["Eat brocolli", "Drink coconut juice", "Count calories"],
         },
         Learn: {
-            items: ['Study python', 'Learn how to knit', 'Learn how to draw']
+            items: ["Study python", "Learn how to knit", "Learn how to draw"],
         },
         Exercise: {
-            items: ['Do some situps', 'Try yoga poses', 'Run 5k']
+            items: ["Do some situps", "Try yoga poses", "Run 5k"],
         },
         Productivity: {
-            items: ['Make your bed', 'Study 8pm everyday', 'Finish work by 1pm']
-        }
-    }
-    
+            items: ["Make your bed", "Study 8pm everyday", "Finish work by 1pm"],
+        },
+    };
+
     return (
         <AddHabitContainer>
             <h1>Pick a Habit</h1>
             <Header>
                 <HeaderLeft className="header-left">
-                    <ul>
-                        {categoriesList}
-                    </ul>
+                    <ul>{categoriesList}</ul>
                 </HeaderLeft>
                 {/* <HeaderRight>Filter</HeaderRight> */}
             </Header>
             <CardsContainer>
-                { preset === 'Custom' ? 
-                    <Card className="custom" onClick={(e) => openModal('habitAdd', e, 'custom')}><span>+</span><span>Add Your Own</span></Card>
-                    : 
-                    ( preset === 'All' ?
-                        ( Object.keys( categoryItems ).map( category => categoryItems[category].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )} img={ `url("./categories/${ category }.jpg")`}><span className="item-text">{item}</span></Card>) ) )
-                        
-                        :
-                        ( categoryItems[ preset ].items.map((item) => <Card onClick={(e) => openModal('habitAdd', e, categoryItems[ preset ] )} img={ `url("./categories/${ preset }.jpg")`}><span className="item-text">{item}</span></Card>) )
+                {preset === "Custom" ? (
+                    <Card className="custom" onClick={(e) => openModal("habitAdd", e, "custom")}>
+                        <span>+</span>
+                        <span>Add Your Own</span>
+                    </Card>
+                ) : preset === "All" ? (
+                    Object.keys(categoryItems).map((category) =>
+                        categoryItems[category].items.map((item) => (
+                            <Card
+                                key={item}
+                                onClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
+                                img={`url("./categories/${category}.jpg")`}
+                            >
+                                <span className="item-text">{item}</span>
+                            </Card>
+                        ))
                     )
-                }
+                ) : (
+                    categoryItems[preset].items.map((item) => (
+                        <Card
+                            key={item}
+                            onClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
+                            img={`url("./categories/${preset}.jpg")`}
+                        >
+                            <span className="item-text">{item}</span>
+                        </Card>
+                    ))
+                )}
             </CardsContainer>
         </AddHabitContainer>
-    )
-}
+    );
+};
 
 export default Preset;

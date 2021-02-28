@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { 
-    changeHabitName, 
+import {
+    changeHabitName,
     changeHabitType,
     changeHabitFreq,
     changeHabitGoal,
-    changeHabitDuration
+    changeHabitDuration,
 } from "../../actions/habitAddActions";
-import Input from  './../Input.js';
-import Button from './../Button.js';
+import Input from "./../Input.js";
+import Button from "./../Button.js";
 
 import { whichModalAction } from "./../../actions/modalActions.js";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { below } from "./../../elements/utilities";
 
 const Back = styled.button`
@@ -64,14 +64,14 @@ const FormColumns = styled.div`
 `;
 
 const Label = styled.label`
-    font-size: .65rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     padding-bottom: 5px;
 `;
 
 const HabitSelect = styled.select`
-    background: #D6D6D6;
+    background: #d6d6d6;
     outline: none;
     border: none;
     padding: 10px 15px;
@@ -82,10 +82,9 @@ const HabitSelect = styled.select`
 const HabitAdd = () => {
     const dispatch = useDispatch();
     const habitState = useSelector((state) => state.habitAddReducer);
-    const currentHabit = useSelector((state) => state.habitLoadReducer);
-    const openModal = (modal)  => {
+    const openModal = (modal) => {
         dispatch(whichModalAction(modal));
-    }
+    };
 
     const inputName = (e) => dispatch(changeHabitName(e.target.value));
     const inputType = (e) => dispatch(changeHabitType(e.target.value));
@@ -93,17 +92,7 @@ const HabitAdd = () => {
     const inputGoal = (e) => dispatch(changeHabitGoal(e.target.value));
     const inputDuration = (e) => dispatch(changeHabitDuration(e.target.value));
 
-    let url = '';
-
-    useEffect(() => {
-        if('name' in currentHabit) {
-            document.getElementById('habit-name').value = currentHabit.name;
-        }
-        if('type' in currentHabit) {
-            document.getElementById('habit-type').value = currentHabit.type;
-        }
-    }, [currentHabit]);
-
+    let url = "";
 
     const submitHabit = (e) => {
         e.preventDefault();
@@ -111,39 +100,49 @@ const HabitAdd = () => {
 
         // fetch
         fetch(url, {
-            method: 'POST',
+            method: "POST",
             body: habitState,
-            headers: { 'Content-type': 'application/json' }
+            headers: { "Content-type": "application/json" },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
             })
-        .then(res => res.json())
-        .then((data) => {
-            console.log(data);
-        })
-        .catch(err => {
-            throw new Error(err);
-        })
-    }
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <>
-            <Back onClick={ () => openModal('preset')}>{ '< Back' }</Back>
+            <Back onClick={() => openModal("preset")}>{"< Back"}</Back>
             <AddHabitContainer>
                 <h1>Add Habit</h1>
                 <form id="habit-add">
                     <FormColumns>
                         <div>
-                            <Input label="Name" type="text" placeholder="Do some situpts" id="habit-name" handleChange={ inputName } />
+                            <Input
+                                label="Name"
+                                type="text"
+                                id="habit-name"
+                                handleChange={inputName}
+                                value={habitState.name}
+                            />
                             <Label htmlFor="habit-freq">Frequency</Label>
-                            <HabitSelect id="habit-freq" onChange={inputFreq}>
-                                <option selected disabled hidden value="">Select frequency</option>
+                            <HabitSelect id="habit-freq" onChange={inputFreq} value={habitState.freq}>
+                                <option disabled hidden value="">
+                                    Select frequency
+                                </option>
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
                                 <option value="bi-weekly">Bi-Weekly</option>
                                 <option value="monthly">Monthly</option>
                             </HabitSelect>
                             <Label htmlFor="habit-duration">Duration</Label>
-                            <HabitSelect id="habit-duration" onChange={inputDuration}>
-                                <option selected disabled hidden value="">Select duration</option>
+                            <HabitSelect id="habit-duration" onChange={inputDuration} value={habitState.duration}>
+                                <option disabled hidden value="">
+                                    Select duration
+                                </option>
                                 <option value="month-one">1 Month</option>
                                 <option value="month-two">2 Months</option>
                                 <option value="month-three">3 Months</option>
@@ -160,21 +159,27 @@ const HabitAdd = () => {
                         </div>
                         <div>
                             <Label htmlFor="habit-type">Type</Label>
-                            <HabitSelect id="habit-type" onChange={inputType}>
-                                <option selected disabled hidden value="">Select type</option>
+                            <HabitSelect id="habit-type" onChange={inputType} value={habitState.type}>
+                                <option disabled hidden value="">
+                                    Select type
+                                </option>
                                 <option value="health">Health</option>
                                 <option value="diet">Diet</option>
                                 <option value="exercise">Exercise</option>
                                 <option value="learn">Learn</option>
                                 <option value="productivity">Productivity</option>
                             </HabitSelect>
-                            <Input label="Goal" type="text" placeholder="What's your goal?" id="habit-goal" handleChange={ inputGoal } />
+                            <Input
+                                label="Goal"
+                                type="text"
+                                placeholder="What's your goal?"
+                                id="habit-goal"
+                                handleChange={inputGoal}
+                                value={habitState.goal}
+                            />
                         </div>
                     </FormColumns>
-                    <Button content="Submit"
-                        type="submit"
-                        color='#355070'
-                        handleClick={submitHabit} />
+                    <Button content="Submit" type="submit" color="#355070" handleClick={submitHabit} />
                 </form>
             </AddHabitContainer>
         </>
