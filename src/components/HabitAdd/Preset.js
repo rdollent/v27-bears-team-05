@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { below } from "./../../elements/utilities";
 import { whichModalAction } from "./../../actions/modalActions.js";
 import { loadHabit } from "./../../actions/habitAddActions";
+import HabitCard from './../HabitCard.js';
 
 const AddHabitContainer = styled.div`
     height: 90%;
@@ -46,67 +47,11 @@ const ListItem = styled.li`
     color: ${(props) => (props.preset ? "black" : "#8f8d8d")};
 `;
 
-const HeaderRight = styled.div``;
-
 const CardsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     overflow: scroll;
     max-height: 80%;
-`;
-
-const Card = styled.div`
-    height: 100px;
-    width: 165px;
-    // border: 1px solid black;
-    margin: 10px;
-    border-radius: 10px;
-    padding: 8px;
-    cursor: pointer;
-    box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.75);
-    transition: all 0.2s ease-in-out;
-    background-image: linear-gradient(
-            180deg,
-            rgba(231, 231, 244, 0) 32%,
-            rgba(0, 0, 0, 0.4164040616246498) 59%,
-            rgba(0, 0, 0, 0.8897934173669468) 100%
-        ),
-        ${(props) => (props.img ? props.img : "")};
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: relative;
-
-    &:hover {
-        transform: translateY(-5px);
-    }
-
-    .item-text {
-        color: white;
-        font-weight: bold;
-        position: absolute;
-        bottom: 8px;
-    }
-
-    &.custom {
-        display: flex;
-        flex-direction: column;
-        background: black;
-        color: white;
-
-        span:first-of-type {
-            text-align: center;
-            padding-top: 10px;
-            font-size: 45px;
-        }
-
-        span:last-of-type {
-            font-weight: bold;
-        }
-    }
 `;
 
 const Preset = () => {
@@ -145,6 +90,8 @@ const Preset = () => {
         },
     };
 
+    console.log( 'CATEGORIES', categoryItems['Health'])
+
     return (
         <AddHabitContainer>
             <h1>Pick a Habit</h1>
@@ -156,31 +103,24 @@ const Preset = () => {
             </Header>
             <CardsContainer>
                 {preset === "Custom" ? (
-                    <Card className="custom" onClick={(e) => openModal("habitAdd", e, "custom")}>
-                        <span>+</span>
-                        <span>Add Your Own</span>
-                    </Card>
+                    <HabitCard custom={true} handleClick={(e) => openModal("habitAdd", e, "custom")} />
                 ) : preset === "All" ? (
                     Object.keys(categoryItems).map((category) =>
                         categoryItems[category].items.map((item) => (
-                            <Card
+                            <HabitCard
                                 key={item}
-                                onClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
-                                img={`url("./categories/${category}.jpg")`}
-                            >
-                                <span className="item-text">{item}</span>
-                            </Card>
+                                handleClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
+                                category={category}
+                                item={item} />
                         ))
                     )
                 ) : (
                     categoryItems[preset].items.map((item) => (
-                        <Card
+                        <HabitCard
                             key={item}
-                            onClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
-                            img={`url("./categories/${preset}.jpg")`}
-                        >
-                            <span className="item-text">{item}</span>
-                        </Card>
+                            handleClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
+                            category={preset}
+                            item={item} />
                     ))
                 )}
             </CardsContainer>
