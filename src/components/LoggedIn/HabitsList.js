@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { storeHabits } from "./../../actions/habitListActions.js";
+
 
 const HabitsListContainer = styled.div`
     width: 100%;
@@ -31,7 +34,36 @@ const EmptyHabits = styled.div`
 const HabitsList = () => {
     let habits = [];
 
-    const dispatch = useDispatch()
+    const userState = useSelector((state) => state.userReducer);
+    const user = userState.user;
+    const dispatch = useDispatch();
+
+    const modalState = useSelector((state) => state.modalReducer.opened);
+
+    const getHabits = async () => {
+        const userData = JSON.stringify(user);
+        try {
+            await axios.get(
+                "http://localhost:5000/api/habits/",
+                {
+                    params: {
+                        user: userData
+                }
+            })
+            .then((res) => {
+                console.log('this is res', res.data);
+                dispatch(storeHabits(res.data));
+            })    
+        } catch (error) {
+            console.log(error.response);
+    
+        }
+    };
+
+    useEffect(() => {
+        getHabits();
+    }, [modalState]);
+
     const openModal = (modal)  => {
         dispatch(toggleModalAction());
         dispatch(whichModalAction(modal));

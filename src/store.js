@@ -6,12 +6,14 @@ import { modalReducer } from "./reducers/modalReducer.js";
 
 import { userReducer } from "./reducers/userReducers";
 import { habitAddReducer } from "./reducers/habitAddReducer";
+import { habitListReducer } from "./reducers/habitListReducer";
 
 const reducer = combineReducers({
     exampleReducer,
     modalReducer,
     userReducer,
     habitAddReducer,
+    habitListReducer
 });
 
 const initialState = {};

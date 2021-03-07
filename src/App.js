@@ -20,11 +20,11 @@ const App = () => {
 
     return (
         <div>
-            <Router>
+            {/* <Router> */}
                 <Switch>
                     <Route path="/" exact component={Home} />
                 </Switch>
-            </Router>
+            {/* </Router> */}
             <Modal />
         </div>
     );
