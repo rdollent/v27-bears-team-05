@@ -1,11 +1,12 @@
 import {
     CHANGE_HABIT_NAME,
-    CHANGE_HABIT_TYPE,
-    CHANGE_HABIT_FREQ,
+    CHANGE_HABIT_CATEGORY,
+    CHANGE_HABIT_FREQUENCY,
     CHANGE_HABIT_GOAL,
-    CHANGE_HABIT_DURATION,
+    CHANGE_HABIT_TIMELINE,
     LOAD_HABIT,
 } from "../constants/habitAddConstants";
+import axios from "axios";
 
 export const changeHabitName = (input) => {
     return {
@@ -14,16 +15,16 @@ export const changeHabitName = (input) => {
     };
 };
 
-export const changeHabitType = (input) => {
+export const changeHabitCategory = (input) => {
     return {
-        type: CHANGE_HABIT_TYPE,
+        type: CHANGE_HABIT_CATEGORY,
         input: input,
     };
 };
 
-export const changeHabitFreq = (input) => {
+export const changeHabitFrequency = (input) => {
     return {
-        type: CHANGE_HABIT_FREQ,
+        type: CHANGE_HABIT_FREQUENCY,
         input: input,
     };
 };
@@ -35,9 +36,9 @@ export const changeHabitGoal = (input) => {
     };
 };
 
-export const changeHabitDuration = (input) => {
+export const changeHabitTimeline = (input) => {
     return {
-        type: CHANGE_HABIT_DURATION,
+        type: CHANGE_HABIT_TIMELINE,
         input: input,
     };
 };
@@ -47,4 +48,29 @@ export const loadHabit = (input) => {
         type: LOAD_HABIT,
         input,
     };
+};
+
+
+export const addHabit = (habits) => async (dispatch) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    const body = JSON.stringify(habits);
+
+    try {
+        const res = await axios.post(
+            "http://localhost:5000/api/habits/add",
+            body,
+            config
+        );
+        
+        console.log(res.data);
+
+    } catch (error) {
+        console.log(error.response);
+
+    }
 };

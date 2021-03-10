@@ -1,38 +1,38 @@
 import {
     CHANGE_HABIT_NAME,
-    CHANGE_HABIT_TYPE,
-    CHANGE_HABIT_FREQ,
+    CHANGE_HABIT_CATEGORY,
+    CHANGE_HABIT_FREQUENCY,
     CHANGE_HABIT_GOAL,
-    CHANGE_HABIT_DURATION,
+    CHANGE_HABIT_TIMELINE,
     LOAD_HABIT,
 } from "../constants/habitAddConstants";
 
-export const habitAddReducer = (state = { name: "", type: "", freq: "", goal: "", duration: "" }, action) => {
+export const habitAddReducer = (state = { name: "", category: "", frequency: "", goal: "", timeline: 0 }, action) => {
     switch (action.type) {
         case CHANGE_HABIT_NAME:
             return {
                 ...state,
                 name: action.input,
             };
-        case CHANGE_HABIT_TYPE:
+        case CHANGE_HABIT_CATEGORY:
             return {
                 ...state,
-                type: action.input,
+                category: action.input,
             };
-        case CHANGE_HABIT_FREQ:
+        case CHANGE_HABIT_FREQUENCY:
             return {
                 ...state,
-                freq: action.input,
+                frequency: action.input,
             };
         case CHANGE_HABIT_GOAL:
             return {
                 ...state,
                 goal: action.input,
             };
-        case CHANGE_HABIT_DURATION:
+        case CHANGE_HABIT_TIMELINE:
             return {
                 ...state,
-                duration: action.input,
+                timeline: action.input,
             };
         case LOAD_HABIT:
             return {

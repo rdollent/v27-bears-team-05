@@ -22,6 +22,7 @@ const InputField = styled.input`
 `;
 
 const Input = ({ handleChange, label, type, id, value, placeholder = "" }) => {
+    let min = (type === 'number' ? 0 : '');
     return (
         <InputContainer>
             <Label htmlFor={id}>{label}</Label>
@@ -32,6 +33,7 @@ const Input = ({ handleChange, label, type, id, value, placeholder = "" }) => {
                 placeholder={placeholder}
                 type={type}
                 onChange={(e) => handleChange(e)}
+                min={min}
             />
         </InputContainer>
     );

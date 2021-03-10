@@ -1,18 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
     changeHabitName,
-    changeHabitType,
-    changeHabitFreq,
+    changeHabitCategory,
+    changeHabitFrequency,
     changeHabitGoal,
-    changeHabitDuration,
+    changeHabitTimeline,
+    addHabit
 } from "../../actions/habitAddActions";
 import Input from "./../Input.js";
 import Button from "./../Button.js";
 
-import { whichModalAction } from "./../../actions/modalActions.js";
+import { whichModalAction, toggleModalAction } from "./../../actions/modalActions.js";
 import styled from "styled-components";
 import { below } from "./../../elements/utilities";
+import axios from "axios";
+
+import { useHistory } from "react-router-dom";
+
 
 const Back = styled.button`
     position: absolute;
@@ -82,36 +87,37 @@ const HabitSelect = styled.select`
 const HabitAdd = () => {
     const dispatch = useDispatch();
     const habitState = useSelector((state) => state.habitAddReducer);
+    const userState = useSelector((state) => state.userReducer);
+    const user = userState.user;
     const openModal = (modal) => {
         dispatch(whichModalAction(modal));
     };
 
     const inputName = (e) => dispatch(changeHabitName(e.target.value));
-    const inputType = (e) => dispatch(changeHabitType(e.target.value));
-    const inputFreq = (e) => dispatch(changeHabitFreq(e.target.value));
+    const inputCategory = (e) => dispatch(changeHabitCategory(e.target.value));
+    const inputFrequency = (e) => dispatch(changeHabitFrequency(e.target.value));
     const inputGoal = (e) => dispatch(changeHabitGoal(e.target.value));
-    const inputDuration = (e) => dispatch(changeHabitDuration(e.target.value));
+    const inputTimeline = (e) => dispatch(changeHabitTimeline(Number(e.target.value)));
 
     let url = "";
+
+    let history = useHistory();
+
+    /** use to refresh */
+    const [unusedState, setUnusedState] = useState()
+    const forceUpdate = useCallback(() => setUnusedState({}), [])
 
     const submitHabit = (e) => {
         e.preventDefault();
         console.log(habitState);
-
-        // fetch
-        fetch(url, {
-            method: "POST",
-            body: habitState,
-            headers: { "Content-type": "application/json" },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        console.log(userState);
+        console.log({...habitState, user})
+        dispatch(addHabit({...habitState, user}));
+        // forceUpdate(); 
+        dispatch(toggleModalAction());
     };
+
+    
 
     return (
         <>
@@ -128,8 +134,8 @@ const HabitAdd = () => {
                                 handleChange={inputName}
                                 value={habitState.name}
                             />
-                            <Label htmlFor="habit-freq">Frequency</Label>
-                            <HabitSelect id="habit-freq" onChange={inputFreq} value={habitState.freq}>
+                            <Label htmlFor="habit-frequency">Frequency</Label>
+                            <HabitSelect id="habit-frequency" onChange={inputFrequency} value={habitState.frequency}>
                                 <option disabled hidden value="">
                                     Select frequency
                                 </option>
@@ -138,10 +144,18 @@ const HabitAdd = () => {
                                 <option value="bi-weekly">Bi-Weekly</option>
                                 <option value="monthly">Monthly</option>
                             </HabitSelect>
-                            <Label htmlFor="habit-duration">Duration</Label>
-                            <HabitSelect id="habit-duration" onChange={inputDuration} value={habitState.duration}>
+                            {/* <Label htmlFor="habit-timeline">Timeline</Label> */}
+                            <Input
+                                label="Timeline (Days)"
+                                type="number"
+                                id="habit-timeline"
+                                handleChange={inputTimeline}
+                                value={habitState.timeline}
+                            />
+                            {/* 
+                            <HabitSelect id="habit-timeline" onChange={inputTimeline} value={habitState.timeline}>
                                 <option disabled hidden value="">
-                                    Select duration
+                                    Select timeline
                                 </option>
                                 <option value="month-one">1 Month</option>
                                 <option value="month-two">2 Months</option>
@@ -156,12 +170,13 @@ const HabitAdd = () => {
                                 <option value="month-eleven">11 Months</option>
                                 <option value="month-twelve">12 Months</option>
                             </HabitSelect>
+                             */}
                         </div>
                         <div>
-                            <Label htmlFor="habit-type">Type</Label>
-                            <HabitSelect id="habit-type" onChange={inputType} value={habitState.type}>
+                            <Label htmlFor="habit-category">Category</Label>
+                            <HabitSelect id="habit-category" onChange={inputCategory} value={habitState.category}>
                                 <option disabled hidden value="">
-                                    Select type
+                                    Select category
                                 </option>
                                 <option value="health">Health</option>
                                 <option value="diet">Diet</option>
