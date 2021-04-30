@@ -31,12 +31,31 @@ const EmptyHabits = styled.div`
     }
 `;
 
+const HabitsItems = styled.section`
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+        width: 200px;
+        display: inline-block;
+        margin: 20px;
+    }
+
+
+`;
+
+
+
+
 const HabitsList = () => {
     let habits = [];
 
     const userState = useSelector((state) => state.userReducer);
+    habits = useSelector((state) => state.habitListReducer.habits);
     const user = userState.user;
     const dispatch = useDispatch();
+
+    console.log('this is habits', habits);
 
     const modalState = useSelector((state) => state.modalReducer.opened);
 
@@ -71,9 +90,21 @@ const HabitsList = () => {
     return (
         <HabitsListContainer>
             { habits.length ? 
-                'habits' : 
+                <HabitsItems>
+                    {
+                        habits.map((item, i) => { 
+                            return (
+                                <div key={i}>
+                                    <p>{item.name}</p>
+                                    <p>{item.category}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </HabitsItems>
+                : 
                 <EmptyHabits>
-                    <span>You don't currently have any habits. <span onClick={() => openModal('habitAdd')} className="add-habit-link">Start a new habit today!</span></span>
+                    <span>You don't currently have any habits. <span onClick={() => openModal('preset')} className="add-habit-link">Start a new habit today!</span></span>
                     <div className="img-container">
                         <img src="./images/emptyHabits.png" alt="Person Icon" />
                     </div>

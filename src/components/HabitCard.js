@@ -56,7 +56,9 @@ const HabitCard = ( { item, handleClick, img, custom=false, category }) => {
             key={ item }
             onClick={ handleClick }
             img={ img }
-            custom={ custom }>
+            custom={ custom }
+            data-category={category} 
+            >
             <FontAwesomeIcon className="icon" icon={ custom ? faPlus : categoryIcons[category]} />
             <span className="item-text">{ custom ? 'Add Your Own' : item }</span>   
         </CardContainer>

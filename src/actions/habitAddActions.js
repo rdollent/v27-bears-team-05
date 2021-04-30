@@ -46,7 +46,7 @@ export const changeHabitTimeline = (input) => {
 export const loadHabit = (input) => {
     return {
         type: LOAD_HABIT,
-        input,
+        input: input
     };
 };
 

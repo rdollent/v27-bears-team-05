@@ -23,11 +23,11 @@ const LoggedInContent = styled.div`
     padding: 15px;
     width: 100%;
 
-    p {
+    /* p {
         font-size: 1.5em;
         font-weight: bold;
         text-align: center;
-    }
+    } */
 `;
 
 const Header = styled.div`

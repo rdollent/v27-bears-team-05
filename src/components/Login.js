@@ -26,7 +26,7 @@ const LoginContainer = styled.div`
         span {
             font-weight: bold;
             cursor: pointer;
-            font-color: #355070;
+            color: #355070;
         }
     }
 `;
@@ -41,8 +41,8 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
-        username: "",
-        password: "",
+        username: "user1",
+        password: "123456",
     });
 
     const onChange = (e, name) => {
@@ -65,7 +65,8 @@ const Login = () => {
                     label="Username"
                     type="text"
                     id="Username"
-                    value={username}
+                    // value={username}
+                    value= 'user1'
                     placeholder="Username"
                     name="username"
                     handleChange={(e) => onChange(e, "username")}
@@ -74,7 +75,8 @@ const Login = () => {
                     label="Password"
                     type="password"
                     id="Password"
-                    value={password}
+                    // value={password}
+                    value='123456'
                     placeholder="Password"
                     name="password"
                     handleChange={(e) => onChange(e, "password")}

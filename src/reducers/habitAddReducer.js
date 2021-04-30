@@ -12,33 +12,33 @@ export const habitAddReducer = (state = { name: "", category: "", frequency: "",
         case CHANGE_HABIT_NAME:
             return {
                 ...state,
-                name: action.input,
+                name: action.input
             };
         case CHANGE_HABIT_CATEGORY:
             return {
                 ...state,
-                category: action.input,
+                category: action.input
             };
         case CHANGE_HABIT_FREQUENCY:
             return {
                 ...state,
-                frequency: action.input,
+                frequency: action.input
             };
         case CHANGE_HABIT_GOAL:
             return {
                 ...state,
-                goal: action.input,
+                goal: action.input
             };
         case CHANGE_HABIT_TIMELINE:
             return {
                 ...state,
-                timeline: action.input,
+                timeline: action.input
             };
         case LOAD_HABIT:
             return {
                 ...state,
                 name: action.input.name,
-                type: action.input.type,
+                category: action.input.category
             };
         default:
             return state;

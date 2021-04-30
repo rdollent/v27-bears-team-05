@@ -57,11 +57,12 @@ const CardsContainer = styled.div`
 const Preset = () => {
     const [preset, setPreset] = useState("All");
     const dispatch = useDispatch();
-    const openModal = (modal, e, type) => {
+    const openModal = (modal, e, category) => {
         dispatch(whichModalAction(modal));
-        if (type !== "custom") {
-            dispatch(loadHabit({ name: e.target.innerText, type: type }));
+        if (preset !== "custom") {
+            dispatch(loadHabit({ name: e.target.innerText, category: category }));
         }
+        console.log('this is the category clicked', category);
     };
 
     const categories = ["All", "Health", "Diet", "Learn", "Exercise", "Productivity", "Custom"];
@@ -109,7 +110,7 @@ const Preset = () => {
                         categoryItems[category].items.map((item) => (
                             <HabitCard
                                 key={item}
-                                handleClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
+                                handleClick={(e) => openModal("habitAdd", e, category)}
                                 category={category}
                                 item={item} />
                         ))
@@ -118,7 +119,7 @@ const Preset = () => {
                     categoryItems[preset].items.map((item) => (
                         <HabitCard
                             key={item}
-                            handleClick={(e) => openModal("habitAdd", e, categoryItems[preset])}
+                            handleClick={(e) => openModal("habitAdd", e, preset)}
                             category={preset}
                             item={item} />
                     ))

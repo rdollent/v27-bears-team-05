@@ -10,8 +10,8 @@ const ButtonsContainer = styled.div`
     padding: 15px;
 
     img {
-        width: 40px;
-        margin: 0 5px;
+        width: 64px;
+        margin: 0 10px;
         cursor: pointer;
     }
 `;
