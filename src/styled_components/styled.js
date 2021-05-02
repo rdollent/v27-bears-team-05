@@ -29,14 +29,6 @@ export const EmptyHabits = styled.div`
 export const HabitsItems = styled.section`
     display: flex;
     flex-wrap: wrap;
-
-    div {
-        width: 200px;
-        display: inline-block;
-        margin: 20px;
-    }
-
-
 `;
 
 

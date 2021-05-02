@@ -56,10 +56,13 @@ const HabitsList = () => {
                     {
                         habits.map((item, i) => { 
                             return (
-                                <div key={i}>
-                                    <p>{item.name}</p>
-                                    <p>{item.category}</p>
-                                </div>
+                                <HabitCard 
+                                    key={i}
+                                    item={ item.name }
+                                    category={ item.category }
+                                    handleClick={(e) => { }} 
+                                />
+ 
                             )
                         })
                     }

@@ -116,11 +116,11 @@ const HabitAdd = () => {
                                 <option disabled hidden value="">
                                     Select category
                                 </option>
-                                <option value="health">Health</option>
-                                <option value="diet">Diet</option>
-                                <option value="exercise">Exercise</option>
-                                <option value="learn">Learn</option>
-                                <option value="productivity">Productivity</option>
+                                <option value="Health">Health</option>
+                                <option value="Diet">Diet</option>
+                                <option value="Exercise">Exercise</option>
+                                <option value="Learn">Learn</option>
+                                <option value="Productivity">Productivity</option>
                             </HabitSelect>
                             <Input
                                 label="Goal"

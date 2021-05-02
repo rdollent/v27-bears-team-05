@@ -12,10 +12,9 @@ const Preset = () => {
     const dispatch = useDispatch();
     const openModal = (modal, e, category) => {
         if (preset !== "custom") {
-            dispatch(loadHabit({ name: e.target.innerText, category: category.toLowerCase()}));
+            dispatch(loadHabit({ name: e.target.innerText, category: category}));
         }
-        setTimeout(dispatch(whichModalAction(modal)), 1000);
-        
+        dispatch(whichModalAction(modal));
         console.log('this is the category clicked', category);
     };
 
