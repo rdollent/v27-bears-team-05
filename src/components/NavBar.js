@@ -1,31 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components';
 import Button from "./Button.js";
-import { logout } from '../actions/userActions'
-import { Redirect } from 'react-router-dom'
+import { logout } from '../actions/userActions';
+import { Redirect } from 'react-router-dom';
 
-const NavContainer = styled.div`
-    width: 100vw;
-    background: #F2F2F2;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-`;
-
-const Icon = styled.div`
-    display: flex;
-
-    h6 {
-        font-size: 1.2em;
-    }
-
-    .orange {
-        color: #e56b6f;
-    }
-`;
+import { NavContainer, Icon } from "../styled_components/styled.js";
 
 const NavBar = () => {
     const dispatch = useDispatch();

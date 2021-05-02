@@ -12,77 +12,15 @@ import Input from "./../Input.js";
 import Button from "./../Button.js";
 
 import { whichModalAction, toggleModalAction } from "./../../actions/modalActions.js";
-import styled from "styled-components";
+
 import { below } from "./../../elements/utilities";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 
+import { AddHabitForm, Back, FormColumns, Label, HabitSelect } from "../../styled_components/styled.js";
 
-const Back = styled.button`
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-weight: bold;
-    font-size: 14px;
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-`;
 
-const AddHabitContainer = styled.div`
-    height: 90%;
-    width: 90%;
-    position: relative;
-
-    h1 {
-        text-align: center;
-        padding: 25px 0;
-        ${below.xs`
-            padding: 10px 0;
-        `}
-    }
-
-    button {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
-`;
-
-const FormColumns = styled.div`
-    display: flex;
-    justify-content: space-between;
-    ${below.xs`
-      flex-direction: column;
-    `}
-
-    > div {
-        width: 47%;
-        display: flex;
-        flex-flow: column;
-        ${below.xs`
-            width: 100%;
-        `}
-    }
-`;
-
-const Label = styled.label`
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding-bottom: 5px;
-`;
-
-const HabitSelect = styled.select`
-    background: #d6d6d6;
-    outline: none;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-`;
 
 const HabitAdd = () => {
     const dispatch = useDispatch();
@@ -101,7 +39,7 @@ const HabitAdd = () => {
 
     let url = "";
 
-    let history = useHistory();
+    // let history = useHistory();
 
     /** use to refresh */
     const [unusedState, setUnusedState] = useState()
@@ -122,7 +60,7 @@ const HabitAdd = () => {
     return (
         <>
             <Back onClick={() => openModal("preset")}>{"< Back"}</Back>
-            <AddHabitContainer>
+            <AddHabitForm>
                 <h1>Add Habit</h1>
                 <form id="habit-add">
                     <FormColumns>
@@ -196,7 +134,7 @@ const HabitAdd = () => {
                     </FormColumns>
                     <Button content="Submit" type="submit" color="#355070" handleClick={submitHabit} />
                 </form>
-            </AddHabitContainer>
+            </AddHabitForm>
         </>
     );
 };

@@ -1,58 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
 import { below } from "./../../elements/utilities";
 import { whichModalAction } from "./../../actions/modalActions.js";
 import { loadHabit } from "./../../actions/habitAddActions";
 import HabitCard from './../HabitCard.js';
+import { AddHabitContainer, Header, HeaderLeft, ListItem, CardsContainer } from "../../styled_components/styled.js";
 
-const AddHabitContainer = styled.div`
-    height: 90%;
-    width: 90%;
-
-    h1 {
-        text-align: center;
-    }
-`;
-
-const Header = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px 0;
-    ${below.xs`
-      flex-direction: column;
-    `}
-`;
-
-const HeaderLeft = styled.div`
-    display: flex;
-    padding-right: 15px;
-
-    > ul {
-        display: flex;
-        justify-content: space-between;
-        list-style: none;
-        align-items: center;
-        align-self: flex-end;
-        padding-bottom: 5px;
-        flex-wrap: wrap;
-    }
-`;
-
-const ListItem = styled.li`
-    cursor: pointer;
-    padding-right: 25px;
-    font-weight: ${(props) => (props.preset ? "bold" : "normal")};
-    color: ${(props) => (props.preset ? "black" : "#8f8d8d")};
-`;
-
-const CardsContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    overflow: scroll;
-    max-height: 80%;
-`;
 
 const Preset = () => {
     const [preset, setPreset] = useState("All");

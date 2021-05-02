@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button.js";
 import Input from "./Input.js";
-import styled from "styled-components";
 import {
     whichModalAction,
     toggleModalAction,
@@ -9,33 +8,9 @@ import {
 import { useDispatch } from "react-redux";
 import { userLogin, login } from "./../actions/userActions.js";
 
-const LoginContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+import { LoginContainer, LoginForm } from "../styled_components/styled.js";
 
-    h2 {
-        padding-bottom: 25px;
-    }
 
-    p {
-        font-size: 0.8rem;
-        padding-top: 25px;
-
-        span {
-            font-weight: bold;
-            cursor: pointer;
-            color: #355070;
-        }
-    }
-`;
-
-const LoginForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
 
 const Login = () => {
     const dispatch = useDispatch();

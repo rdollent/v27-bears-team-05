@@ -1,50 +1,12 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components';
+
 import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { storeHabits } from "./../../actions/habitListActions.js";
+import HabitCard from './../HabitCard.js';
 
-
-const HabitsListContainer = styled.div`
-    width: 100%;
-    padding-top: 40px;
-`;
-
-const EmptyHabits = styled.div`
-    .add-habit-link {
-        color: #355070;
-        text-decoration: underline;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    .img-container {
-        width: 100%;
-        text-align: center;
-
-        img {
-            width: 35%;
-            max-width: 320px;
-            padding-top: 50px;
-        }
-    }
-`;
-
-const HabitsItems = styled.section`
-    display: flex;
-    flex-wrap: wrap;
-
-    div {
-        width: 200px;
-        display: inline-block;
-        margin: 20px;
-    }
-
-
-`;
-
-
+import { HabitsListContainer, EmptyHabits, HabitsItems } from "../../styled_components/styled.js";
 
 
 const HabitsList = () => {
