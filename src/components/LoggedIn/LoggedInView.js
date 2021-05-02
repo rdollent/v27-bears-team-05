@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { Redirect } from 'react-router-dom'
-import Button from "./../Button.js";
-import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
-import { below } from "./../../elements/utilities";
-import HabitsList from './HabitsList.js';
-import FooterButtons from './FooterButtons.js';
+import Button from "../General/Button";
+import { toggleModalAction, whichModalAction } from "./../../actions/modalActions";
+import { below } from "../../utilities";
+import HabitsList from './HabitsList';
+import FooterButtons from './FooterButtons';
 
-import { LoggedInContainer, LoggedInContent, Header, HeaderLeftLoggedIn, HeaderRight } from "../../styled_components/styled.js";
+import { LoggedInContainer, LoggedInContent, Header, HeaderLeftLoggedIn, HeaderRight } from "../../styled_components/styled";
 
 
 

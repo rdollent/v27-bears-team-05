@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { below } from "./../../elements/utilities";
-import { whichModalAction } from "./../../actions/modalActions.js";
-import { loadHabit } from "./../../actions/habitAddActions";
-import HabitCard from './../HabitCard.js';
-import { AddHabitContainer, Header, HeaderLeft, ListItem, CardsContainer } from "../../styled_components/styled.js";
+import { below } from "../../utilities";
+import { whichModalAction } from "../../actions/modalActions";
+import { loadHabit } from "../../actions/habitAddActions";
+import HabitCard from '../General/HabitCard';
+import { AddHabitContainer, Header, HeaderLeft, ListItem, CardsContainer } from "../../styled_components/styled";
 
 
 const Preset = () => {

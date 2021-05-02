@@ -1,20 +1,8 @@
 import React from 'react'
-import styled from 'styled-components';
-import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
+import { toggleModalAction, whichModalAction } from "../../actions/modalActions";
 import { useDispatch } from "react-redux";
 
-const ButtonsContainer = styled.div`
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 15px;
-
-    img {
-        width: 64px;
-        margin: 0 10px;
-        cursor: pointer;
-    }
-`;
+import { ButtonsContainer } from "../../styled_components/styled";
 
 const FooterButtons = () => {
     const dispatch = useDispatch()

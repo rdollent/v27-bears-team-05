@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import styled from 'styled-components';
-import Button from "./../Button.js";
-import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
+import Button from "../General/Button";
+import { toggleModalAction, whichModalAction } from "../../actions/modalActions";
 
-import { LoggedOutContainer, LoggedOutContent, Title, Buttons } from "../../styled_components/styled.js";
+import { LoggedOutContainer, LoggedOutContent, Title, Buttons } from "../../styled_components/styled";
 
 
 const LoggedOutView = () => {

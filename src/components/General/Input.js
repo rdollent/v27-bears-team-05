@@ -1,5 +1,5 @@
 import React from "react";
-import { InputContainer, Label, InputField } from "../styled_components/styled.js";
+import { InputContainer, Label, InputField } from "../../styled_components/styled";
 
 
 

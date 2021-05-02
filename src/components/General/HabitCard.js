@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRunning, faHeart, faUtensils, faLaptopHouse, faGraduationCap, faCoffee, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { CardContainer } from "../styled_components/styled.js";
+import { CardContainer } from "../../styled_components/styled";
 
 const HabitCard = ( { item, handleClick, img, custom=false, category }) => {
 

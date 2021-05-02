@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import Button from "./Button.js";
-import Input from "./Input";
+import Button from "../General/Button";
+import Input from "../General/Input";
 
 import {
     whichModalAction,
     toggleModalAction,
-} from "./../actions/modalActions.js";
+} from "../../actions/modalActions";
 
 import { useDispatch } from "react-redux";
-import { register } from "../actions/userActions";
+import { register } from "../../actions/userActions";
 
-import { RegisterContainer, RegisterForm } from "../styled_components/styled.js";
+import { RegisterContainer, RegisterForm } from "../../styled_components/styled";
 
 const Register = () => {
     const dispatch = useDispatch();

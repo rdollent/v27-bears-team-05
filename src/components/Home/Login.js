@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Button from "./Button.js";
-import Input from "./Input.js";
+import Button from "../General/Button";
+import Input from "../General/Input";
 import {
     whichModalAction,
     toggleModalAction,
-} from "./../actions/modalActions.js";
+} from "../../actions/modalActions";
 import { useDispatch } from "react-redux";
-import { userLogin, login } from "./../actions/userActions.js";
+import { userLogin, login } from "../../actions/userActions";
 
-import { LoginContainer, LoginForm } from "../styled_components/styled.js";
+import { LoginContainer, LoginForm } from "../../styled_components/styled";
 
 
 

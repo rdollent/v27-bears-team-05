@@ -1,5 +1,21 @@
 import styled from 'styled-components';
-import { below } from "../elements/utilities";
+import { below } from "../utilities";
+
+export const Container = styled.div`
+    margin: 2rem auto 0;
+    padding: 0 2rem;
+    max-width: 85rem;
+
+    ${below.s`
+      padding: 0;
+      width: 90%;
+  `}
+
+    ${below.xs`
+      width: 92.5%;
+  `}
+`;
+
 
 export const HabitsListContainer = styled.div`
     width: 100%;
@@ -243,6 +259,7 @@ export const LoginForm = styled.form`
 `;
 
 export const ModalOuterContainer = styled.div`
+    max-width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -300,6 +317,7 @@ export const ModalContent =  styled.div`
 `;
 
 export const NavContainer = styled.div`
+    max-width: 100%;
     width: 100vw;
     background: #F2F2F2;
     height: 45px;
@@ -350,6 +368,7 @@ export const RegisterForm = styled.form`
 `;
 
 export const LoggedInContainer = styled.div`
+    max-width: 100%;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -425,6 +444,7 @@ export const HeaderRight = styled.div`
 
 
 export const LoggedOutContainer = styled.div`
+    max-width: 100%;
     height: 100vh;
     width: 100vw;
     background-image: url("/images/skyBackground.png");
@@ -470,4 +490,17 @@ export const Buttons = styled.div`
     button {
         margin: 0 10px;
     }
+`;
+
+export const ButtonsContainer = styled.div`
+position: absolute;
+bottom: 0;
+right: 0;
+padding: 15px;
+
+img {
+    width: 64px;
+    margin: 0 10px;
+    cursor: pointer;
+}
 `;

@@ -6,7 +6,7 @@ import {
     LOGOUT,
 } from "../constants/userConstants.js";
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
+import setAuthToken from "../utilities/setAuthToken";
 
 export const userLogin = () => {
     return {

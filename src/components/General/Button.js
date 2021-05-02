@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonContainer } from "../styled_components/styled.js";
+import { ButtonContainer } from "../../styled_components/styled";
 
 
 

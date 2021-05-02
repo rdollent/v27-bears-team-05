@@ -8,17 +8,17 @@ import {
     changeHabitTimeline,
     addHabit
 } from "../../actions/habitAddActions";
-import Input from "./../Input.js";
-import Button from "./../Button.js";
+import Input from "../General/Input";
+import Button from "../General/Button";
 
-import { whichModalAction, toggleModalAction } from "./../../actions/modalActions.js";
+import { whichModalAction, toggleModalAction } from "./../../actions/modalActions";
 
-import { below } from "./../../elements/utilities";
+import { below } from "../../utilities";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 
-import { AddHabitForm, Back, FormColumns, Label, HabitSelect } from "../../styled_components/styled.js";
+import { AddHabitForm, Back, FormColumns, Label, HabitSelect } from "../../styled_components/styled";
 
 
 

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 
-import { toggleModalAction, whichModalAction } from "./../../actions/modalActions.js";
+import { toggleModalAction, whichModalAction } from "../../actions/modalActions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { storeHabits } from "./../../actions/habitListActions.js";
-import HabitCard from './../HabitCard.js';
+import { storeHabits } from "../../actions/habitListActions";
+import HabitCard from '../General/HabitCard';
 
-import { HabitsListContainer, EmptyHabits, HabitsItems } from "../../styled_components/styled.js";
+import { HabitsListContainer, EmptyHabits, HabitsItems } from "../../styled_components/styled";
 
 
 const HabitsList = () => {

@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import Button from "./Button.js";
-import { logout } from '../actions/userActions';
+import Button from "../General/Button";
+import { logout } from '../../actions/userActions';
 import { Redirect } from 'react-router-dom';
 
-import { NavContainer, Icon } from "../styled_components/styled.js";
+import { NavContainer, Icon } from "../../styled_components/styled";
 
 const NavBar = () => {
     const dispatch = useDispatch();

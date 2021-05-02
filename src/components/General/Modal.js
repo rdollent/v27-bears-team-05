@@ -1,12 +1,12 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import HabitAdd from './HabitAdd/HabitAdd.js';
-import { toggleModalAction } from './../actions/modalActions.js';
-import Login from './Login.js';
-import Register from './Register.js';
-import Preset from './HabitAdd/Preset.js';
+import HabitAdd from '../HabitAdd/HabitAdd';
+import { toggleModalAction } from '../../actions/modalActions';
+import Login from '../Home/Login';
+import Register from '../Home/Register';
+import Preset from '../HabitAdd/Preset';
 
-import { ModalOuterContainer, ModalContainer, ModalContent } from "../styled_components/styled.js";
+import { ModalOuterContainer, ModalContainer, ModalContent } from "../../styled_components/styled";
 
 
 const Modal = (props) => {
