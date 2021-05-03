@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home/Home";
-import { Container } from "./styled_components/styled";
+import Home from './components/Home/Home';
+import { Container } from './styled_components/styled';
 import Modal from './components/General/Modal';
-import { loadUser } from './actions/userActions'
-import setAuthToken from './utilities/setAuthToken'
+import { loadUser } from './actions/userActions';
+import setAuthToken from './utilities/setAuthToken';
+import HabitView from './components/HabitView/HabitView';
 
 if(localStorage.token) {
   setAuthToken(localStorage.token)
@@ -23,6 +24,7 @@ const App = () => {
             {/* <Router> */}
                 <Switch>
                     <Route path="/" exact component={Home} />
+                    <Route path="/habit" exact component={HabitView} />
                 </Switch>
             {/* </Router> */}
             <Modal />

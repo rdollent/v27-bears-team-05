@@ -9,3 +9,10 @@ export const storeHabits = (input) => {
         input: input,
     };
 };
+
+export const storeCurrentHabit = (input) => {
+    return {
+        type: STORE_CURRENT_HABIT,
+        input: input,
+    };
+};

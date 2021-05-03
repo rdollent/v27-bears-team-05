@@ -10,7 +10,6 @@ import FooterButtons from './FooterButtons';
 import { LoggedInContainer, LoggedInContent, Header, HeaderLeftLoggedIn, HeaderRight } from "../../styled_components/styled";
 
 
-
 const LoggedInView = () => {
     const dispatch = useDispatch()
     const authenticated = useSelector((state) => state.isAuthenticated)

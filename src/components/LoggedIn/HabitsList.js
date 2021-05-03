@@ -3,23 +3,25 @@ import React, { useEffect } from 'react'
 import { toggleModalAction, whichModalAction } from "../../actions/modalActions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { storeHabits } from "../../actions/habitListActions";
+import { storeHabits, storeCurrentHabit } from "../../actions/habitListActions";
 import HabitCard from '../General/HabitCard';
 
 import { HabitsListContainer, EmptyHabits, HabitsItems } from "../../styled_components/styled";
 
+import { useHistory } from "react-router-dom";
+
+
 
 const HabitsList = () => {
-    let habits = [];
-
+    let habits = useSelector((state) => state.habitListReducer.habits);
+    
+    const history = useHistory();
     const userState = useSelector((state) => state.userReducer);
-    habits = useSelector((state) => state.habitListReducer.habits);
     const user = userState.user;
     const dispatch = useDispatch();
 
-    console.log('this is habits', habits);
-
     const modalState = useSelector((state) => state.modalReducer.opened);
+    const habitListState = useSelector((state) => state.habitListReducer.habits);
 
     const getHabits = async () => {
         const userData = JSON.stringify(user);
@@ -33,7 +35,9 @@ const HabitsList = () => {
             })
             .then((res) => {
                 console.log('this is res', res.data);
-                dispatch(storeHabits(res.data));
+                res.data.length !== habitListState.length ?
+                    dispatch(storeHabits(res.data))
+                : console.log('no changes');
             })    
         } catch (error) {
             console.log(error.response);
@@ -43,7 +47,7 @@ const HabitsList = () => {
 
     useEffect(() => {
         getHabits();
-    }, [modalState]);
+    }, [habitListState]);
 
     const openModal = (modal)  => {
         dispatch(toggleModalAction());
@@ -60,9 +64,11 @@ const HabitsList = () => {
                                     key={i}
                                     item={ item.name }
                                     category={ item.category }
-                                    handleClick={(e) => { }} 
+                                    handleClick={(e) => { 
+                                        dispatch(storeCurrentHabit(item));
+                                        history.push("/habit");
+                                    }} 
                                 />
- 
                             )
                         })
                     }
