@@ -362,7 +362,7 @@ export const RegisterContainer = styled.div`
         span {
             font-weight: bold;
             cursor: pointer;
-            font-color: #355070;
+            color: #355070;
         }
     }
 `;
@@ -509,4 +509,9 @@ img {
     margin: 0 10px;
     cursor: pointer;
 }
+`;
+
+export const HabitViewContainer = styled.section`
+    padding: 50px;
+
 `;

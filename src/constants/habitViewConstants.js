@@ -1,0 +1,2 @@
+export const COMPLETED = "COMPLETED";
+export const STORE_CURRENT_HABIT = "STORE_CURRENT_HABIT";

@@ -7,13 +7,15 @@ import { modalReducer } from "../reducers/modalReducer";
 import { userReducer } from "../reducers/userReducers";
 import { habitAddReducer } from "../reducers/habitAddReducer";
 import { habitListReducer } from "../reducers/habitListReducer";
+import { habitViewReducer } from "../reducers/habitViewReducer";
 
 const reducer = combineReducers({
     exampleReducer,
     modalReducer,
     userReducer,
     habitAddReducer,
-    habitListReducer
+    habitListReducer,
+    habitViewReducer,
 });
 
 const initialState = {};

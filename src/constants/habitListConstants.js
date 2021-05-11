@@ -1,2 +1,2 @@
 export const STORE_HABITS = "STORE_HABITS";
-export const STORE_CURRENT_HABIT = "STORE_CURRENT_HABIT";
+

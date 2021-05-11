@@ -1,19 +1,13 @@
 import {
-    STORE_HABITS,
-    STORE_CURRENT_HABIT
+    STORE_HABITS
 } from "../constants/habitListConstants";
 
-export const habitListReducer = (state = { habits: [], currentHabit: {} }, action) => {
+export const habitListReducer = (state = { habits: [] }, action) => {
     switch (action.type) {
         case STORE_HABITS:
             return {
                 ...state,
-                habits: action.input,
-            };
-        case STORE_CURRENT_HABIT:
-            return {
-                ...state,
-                currentHabit: action.input,
+                habits: action.input
             };
         default:
             return state;

@@ -3,7 +3,8 @@ import React, { useEffect } from 'react'
 import { toggleModalAction, whichModalAction } from "../../actions/modalActions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { storeHabits, storeCurrentHabit } from "../../actions/habitListActions";
+import { storeHabits } from "../../actions/habitListActions";
+import { storeCurrentHabit } from "../../actions/habitViewActions";
 import HabitCard from '../General/HabitCard';
 
 import { HabitsListContainer, EmptyHabits, HabitsItems } from "../../styled_components/styled";
@@ -36,9 +37,19 @@ const HabitsList = () => {
             .then((res) => {
                 console.log('this is res', res.data);
                 res.data.length !== habitListState.length ?
-                    dispatch(storeHabits(res.data))
+                    /** run this function */
+                    (() => {
+                        /** replace _id keyname to habitId */
+                        let data = res.data.map(({ _id: habitId, ...rest }) => {
+                            return {
+                                habitId,
+                                ...rest
+                            }
+                        });
+                        dispatch(storeHabits(data));
+                    })()
                 : console.log('no changes');
-            })    
+            })
         } catch (error) {
             console.log(error.response);
     

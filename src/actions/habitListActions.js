@@ -1,6 +1,5 @@
 import {
-    STORE_HABITS,
-    STORE_CURRENT_HABIT
+    STORE_HABITS
 } from "../constants/habitListConstants";
 
 export const storeHabits = (input) => {
@@ -10,9 +9,3 @@ export const storeHabits = (input) => {
     };
 };
 
-export const storeCurrentHabit = (input) => {
-    return {
-        type: STORE_CURRENT_HABIT,
-        input: input,
-    };
-};
