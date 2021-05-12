@@ -42,22 +42,25 @@ export const runCompleted = (habitId) => async (dispatch, getState) => {
     };
 
     const body = JSON.stringify({ habitId });
-
+    // const body = habitId;
     let url = '';
+    
     completed ? url = 'add' : url = 'delete';
+    (async () => {
+        try {
+            const res = await axios.post(
+                `http://localhost:5000/api/completion/${url}`,
+                body,
+                config
+            );
 
-    try {
-        const res = await axios.post(
-            `http://localhost:5000/api/completion/${url}`,
-            body,
-            config
-        );
+            console.log('from completion', res.data);
+            dispatch(storeCompleted(res.data));
 
-        console.log('from completion', res.data);
-        dispatch(storeCompleted(res.data));
+        } catch (error) {
+            console.log(error.response);
 
-    } catch (error) {
-        console.log(error.response);
-    }
+        }
+    })();
 
 };
