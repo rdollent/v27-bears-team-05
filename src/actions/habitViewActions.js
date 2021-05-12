@@ -1,18 +1,16 @@
 import {
     STORE_CURRENT_HABIT,
-    COMPLETED
+    COMPLETED,
+    STORE_COMPLETION
 } from "../constants/habitViewConstants";
 
 import axios from "axios";
-
-import { useSelector } from "react-redux";
-
 
 
 export const storeCurrentHabit = (input) => {
     return {
         type: STORE_CURRENT_HABIT,
-        input: input,
+        input: input
     };
 };
 
@@ -24,7 +22,14 @@ export const toggleCompleted = () => {
     };
 };
 
-export const storeCompleted = (habitId) => async (dispatch, getState) => {
+export const storeCompleted = (input) => {
+    return {
+        type: STORE_COMPLETION,
+        input: input
+    };
+};
+
+export const runCompleted = (habitId) => async (dispatch, getState) => {
 
     dispatch(toggleCompleted());
 
@@ -37,40 +42,22 @@ export const storeCompleted = (habitId) => async (dispatch, getState) => {
     };
 
     const body = JSON.stringify({ habitId });
-    // const body = habitId;
 
-    
-    completed ? 
-    (async () => {
-        try {
-            const res = await axios.post(
-                "http://localhost:5000/api/completion/add",
-                body,
-                config
-            );
+    let url = '';
+    completed ? url = 'add' : url = 'delete';
 
-            console.log('from completion', res.data);
+    try {
+        const res = await axios.post(
+            `http://localhost:5000/api/completion/${url}`,
+            body,
+            config
+        );
 
-        } catch (error) {
-            console.log(error.response);
+        console.log('from completion', res.data);
+        dispatch(storeCompleted(res.data));
 
-        }
-    })()
-    :
-    (async () => {
-        try {
-            const res = await axios.post(
-                "http://localhost:5000/api/completion/delete",
-                body,
-                config
-            );
-
-            console.log('from completion', res.data);
-
-        } catch (error) {
-            console.log(error.response);
-
-        }
-    })();
+    } catch (error) {
+        console.log(error.response);
+    }
 
 };

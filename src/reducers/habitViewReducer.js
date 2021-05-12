@@ -1,9 +1,10 @@
 import {
     STORE_CURRENT_HABIT,
-    COMPLETED
+    COMPLETED,
+    STORE_COMPLETION
 } from "../constants/habitViewConstants";
 
-export const habitViewReducer = (state = { currentHabit: {}, completed: false }, action) => {
+export const habitViewReducer = (state = { currentHabit: {}, completed: false, dates: [] }, action) => {
     switch (action.type) {
         case STORE_CURRENT_HABIT:
             return {
@@ -14,6 +15,11 @@ export const habitViewReducer = (state = { currentHabit: {}, completed: false },
             return {
                 ...state,
                 completed: !state.completed
+            }
+        case STORE_COMPLETION:
+            return {
+                ...state,
+                dates: action.input
             }
         default:
             return state;

@@ -5,7 +5,7 @@ import NavBar from '../LoggedIn/NavBar';
 
 import { HabitViewContainer } from '../../styled_components/styled';
 
-import { storeCompleted } from '../../actions/habitViewActions';
+import { runCompleted } from '../../actions/habitViewActions';
 
 
 const HabitView = () => {
@@ -15,7 +15,7 @@ const HabitView = () => {
     let { name, frequency, timeline, category, goal, user, habitId } = useSelector((state) => state.habitViewReducer.currentHabit);
 
     const completeHabit = () => {
-        dispatch(storeCompleted(habitId));
+        dispatch(runCompleted(habitId));
     };
 
     return (
