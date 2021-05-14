@@ -10,12 +10,13 @@ import { AddHabitContainer, Header, HeaderLeft, ListItem, CardsContainer } from 
 const Preset = () => {
     const [preset, setPreset] = useState("All");
     const dispatch = useDispatch();
-    const openModal = (modal, e, category) => {
+    const openModal = (modal, e, preset, item, category) => {
         if (preset !== "custom") {
-            dispatch(loadHabit({ name: e.target.innerText, category: category}));
+            dispatch(loadHabit({  mode: "add", name: item, category: category}));
+        } else {
+            dispatch(loadHabit({  mode: "add", category: "Health", frequency: "daily" }));
         }
         dispatch(whichModalAction(modal));
-        console.log('this is the category clicked', category);
     };
 
     const categories = ["All", "Health", "Diet", "Learn", "Exercise", "Productivity", "Custom"];
@@ -63,7 +64,7 @@ const Preset = () => {
                         categoryItems[category].items.map((item) => (
                             <HabitCard
                                 key={item}
-                                handleClick={(e) => openModal("habitAdd", e, category)}
+                                handleClick={(e) => openModal("habitAdd", e, preset, item, category)}
                                 category={category}
                                 item={item} />
                         ))
@@ -72,7 +73,7 @@ const Preset = () => {
                     categoryItems[preset].items.map((item) => (
                         <HabitCard
                             key={item}
-                            handleClick={(e) => openModal("habitAdd", e, preset)}
+                            handleClick={(e) => openModal("habitAdd", e, preset, item, preset)}
                             category={preset}
                             item={item} />
                     ))

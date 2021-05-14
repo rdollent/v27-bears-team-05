@@ -37,7 +37,8 @@ const HabitAdd = () => {
     const inputGoal = (e) => dispatch(changeHabitGoal(e.target.value));
     const inputTimeline = (e) => dispatch(changeHabitTimeline(Number(e.target.value)));
 
-    let url = "";
+    // which mode? edit or add
+    const mode = habitState.mode;
 
     // let history = useHistory();
 
@@ -49,7 +50,7 @@ const HabitAdd = () => {
         e.preventDefault();
         console.log(habitState);
         console.log(userState);
-        console.log({...habitState, user})
+        console.log({...habitState, user});
         dispatch(addHabit({...habitState, user}));
         // forceUpdate(); 
         dispatch(toggleModalAction());
@@ -59,9 +60,27 @@ const HabitAdd = () => {
 
     return (
         <>
-            <Back onClick={() => openModal("preset")}>{"< Back"}</Back>
+            { 
+                (() => {
+                    if (mode === 'add') { 
+                        return <Back onClick={() => openModal('preset')}>{'< Back'}</Back>
+                    } else if ( mode === 'edit') {
+                        return <div></div>
+                    }
+                })()
+            }
             <AddHabitForm>
-                <h1>Add Habit</h1>
+                <h1>
+                {
+                    (() => {
+                        if (mode === 'add') {
+                            return 'Add'
+                        } else if (mode === 'edit') {
+                            return 'Edit'
+                        }
+                    }
+                    )()
+                } Habit</h1>
                 <form id="habit-add">
                     <FormColumns>
                         <div>
@@ -90,25 +109,6 @@ const HabitAdd = () => {
                                 handleChange={inputTimeline}
                                 value={habitState.timeline}
                             />
-                            {/* 
-                            <HabitSelect id="habit-timeline" onChange={inputTimeline} value={habitState.timeline}>
-                                <option disabled hidden value="">
-                                    Select timeline
-                                </option>
-                                <option value="month-one">1 Month</option>
-                                <option value="month-two">2 Months</option>
-                                <option value="month-three">3 Months</option>
-                                <option value="month-four">4 Months</option>
-                                <option value="month-five">5 Months</option>
-                                <option value="month-six">6 Months</option>
-                                <option value="month-seven">7 Months</option>
-                                <option value="month-eight">8 Months</option>
-                                <option value="month-nine">9 Months</option>
-                                <option value="month-ten">10 Months</option>
-                                <option value="month-eleven">11 Months</option>
-                                <option value="month-twelve">12 Months</option>
-                            </HabitSelect>
-                             */}
                         </div>
                         <div>
                             <Label htmlFor="habit-category">Category</Label>

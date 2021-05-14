@@ -29,7 +29,7 @@ export const storeCompleted = (input) => {
     };
 };
 
-export const runCompleted = (habitId) => async (dispatch, getState) => {
+export const completeHabit = (habitId) => async (dispatch, getState) => {
 
     dispatch(toggleCompleted());
 
@@ -64,3 +64,4 @@ export const runCompleted = (habitId) => async (dispatch, getState) => {
     })();
 
 };
+
